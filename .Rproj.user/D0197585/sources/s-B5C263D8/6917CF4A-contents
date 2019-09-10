@@ -1,0 +1,633 @@
+---
+title: "Zadania do części 'Łagodne wprowadzenie...'"
+author: "[Krzysztof Trajkowski](https://github.com/krzysiektr/) kody w Python"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:   
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 3
+    #code_folding: hide
+    theme: "sandstone"
+    highlight: pygments
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+# R Zadanie 1.1 {.tabset}
+
+Skonstruuj wektor kwadratów liczb od 1 do 100. Następnie używając operatora dzielenia modulo i funkcji factor() zlicz, które cyfry oraz jak często występują na pozycji jedności w wyznaczonych kwadratach.
+
+## R code
+
+```{r}
+wektor = (1:100)^2
+summary(factor(wektor %% 10))
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import numpy as np
+import pandas as pd
+
+wektor = np.arange(1,100+1,1)**2
+d = pd.DataFrame({'res':wektor % 10})
+print(d['res'].value_counts(sort=False))
+```
+
+# RR Zadanie 1.2 {.tabset}
+
+Zbuduj własne tablice trygonometryczne. Przygotuj ramkę danych, w których zebrane będą informacje o wartościach funkcji sinus, cosinus, tangens
+i cotangens dla kątów: $0^{\circ}$
+, $30^{\circ}$
+, $45^{\circ}$
+, $60^{\circ}$
+, $90^{\circ}$
+. Zauważ, że funkcje trygonometryczne w R przyjmują argumenty w radianach.
+
+## R code
+
+```{r}
+# radiany na stopnie:
+rad2dec <- function(x) x*pi/180
+# liczymy:
+x = rad2dec(c(0,30,45,60,90))
+data.frame(sin = sin(x), cos = cos(x), tan = tan(x), atan = 1/tan(x))
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import numpy as np
+import pandas as pd
+
+# radiany na stopnie:
+rad2dec = lambda x: x*np.pi/180
+# liczymy:
+x = rad2dec(np.array([0,30,45,60,90]))
+print(pd.DataFrame({'sin':np.sin(x),'cos':np.cos(x),'tan':np.tan(x),'atan':1/np.tan(x)}))
+```
+
+# R Zadanie 1.3 {.tabset}
+
+Przygotuj wektor 30 łańcuchów znaków następującej postaci: liczba.litera,
+gdzie liczba to kolejne liczby od 1 do 30 a litera to trzy duże litery A, B, C występujące cyklicznie.
+
+## R code
+
+```{r}
+paste(1:30,c("A", "B", "C"), sep=".")
+paste(1:30,".",c("A", "B", "C"), sep="")
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+print("TODO")
+```
+
+# R Zadanie 1.4 {.tabset}
+
+Wczytaj zbiór danych `daneO` i napisz funkcję lub pętlę sprawdzającą typ i klasę każdej kolumny tego zbioru.
+
+  > Patrz załącznik z opisem zbiorów danych.
+
+## R code
+
+```{r}
+daneO = read.table("http://www.biecek.pl/R/dane/daneO.csv", sep=";", h=T)
+for (i in 1:ncol(daneO))
+   print(paste(colnames(daneO)[i], "klasa:", class(daneO[,i]), "typ:", typeof(daneO[,i])))
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+
+daneO = pd.read_csv("http://www.biecek.pl/R/dane/daneO.csv",sep=";",header=0)
+print(daneO.dtypes)
+```
+
+
+# R Zadanie 1.5 {.tabset}
+
+Z odczytanej ramki danych `daneO` wyświetl tylko dane z wierszy o parzystych
+indeksach.
+
+## R code
+
+```{r}
+parzyste = 1:(nrow(daneO)/2)*2
+parzyste = seq(2,nrow(daneO),2)
+parzyste = (1:nrow(daneO)%%2) ==0
+daneO[parzyste,]
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+
+daneO = pd.read_csv("http://www.biecek.pl/R/dane/daneO.csv",sep=";",header=0)
+print(daneO.iloc[1::2])
+```
+
+
+# R Zadanie 1.6 {.tabset}
+
+Używając operatorów logicznych wyświetl ze zbioru danych tylko wiersze
+odpowiadające: pacjentkom starszym niż 50 lat u których wystąpiły przerzuty do węzłów chłonnych (cecha Wezly.chlonne=1).
+
+## R code
+
+```{r}
+indeksy = (daneO$Wiek>50) & (daneO$Wezly.chlonne ==1)
+daneO[indeksy,]
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+
+daneO = pd.read_csv("http://www.biecek.pl/R/dane/daneO.csv",sep=";",header=0)
+daneO = daneO.rename(columns=lambda x: x.replace('.', '_'))
+
+print(daneO[(daneO['Wiek'].values>50) & (daneO['Wezly_chlonne'].values == 1)])
+```
+
+# R Zadanie 1.7 {.tabset}
+
+Wyświetl nazwy kolumn w zbiorze danych `daneO`, a następnie oblicz długość
+(liczbę znaków) nazw kolejnych kolumn.
+
+## R code
+
+```{r}
+(kolumny = colnames(daneO))
+nchar(kolumny)
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+
+daneO = pd.read_csv("http://www.biecek.pl/R/dane/daneO.csv",sep=";",header=0)
+daneO = daneO.rename(columns=lambda x: x.replace('.', '_'))
+
+print(daneO.columns)
+print([ len(daneO.columns[i]) for i in range(len(daneO.columns)) ])
+```
+
+# R Zadanie 1.8 {.tabset}
+
+Napisz funkcję, która za argumenty przyjmie wektor liczb, a jako wynik zwróci trzy najmniejsze i trzy największe liczby. Jeżeli wejściowy wektor jest krótszy niż trzy liczby, to wyświetlany powinien być napis "za krótki argument".
+
+## R code
+
+```{r}
+skrajne <- function(x) {
+ dlugosc = length(x)
+ if (dlugosc<3) {
+ 		print("za krótki argument")
+ 		return()
+ }
+ sort(x)[c(1:3,(dlugosc-2):dlugosc)]
+}
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+def skrajne(x):
+    if len(x)<3:
+        return "za krótki argument"
+    else:
+        x.sort()
+        return x[:3]+x[-3:]
+```
+
+# RR Zadanie 1.9 {.tabset}
+
+Zmodyfjkuj funkcję z poprzedniego zadania tak, by otrzymywała też drugi
+argument `ile`, którym można określić liczbę skrajnych wartości wyznaczanych jako wynik. Domyślną wartością tego argumentu powinna być liczba
+3.
+
+## R code
+
+```{r}
+skrajne <- function(x, ile=3) {
+ dlugosc = length(x)
+ if (dlugosc<ile) {
+ 		print("za krótki argument")
+ 		return()
+ }
+ sort(x)[c(1:ile,(dlugosc-ile+1):dlugosc)]
+}
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+def skrajne(x, ile=3):
+    if len(x)<3:
+        return "za krótki argument"
+    else:
+        x.sort()
+        return x[:ile]+x[-ile:]
+```
+
+# RR Zadanie 1.10 {.tabset}
+
+Napisz funkcję `poczatek()` przyjmującą za pierwszy argument wektor, macierz lub ramkę a za drugi argument liczbę `n`. Niech to będzie przeciążona
+funkcja. Dla wektora powinna ona w wyniku zwracać n pierwszych elementów, dla macierzy i ramki danych powinna zwracać podmacierz o wymiarach $n\times n$.
+
+## R code
+
+```{r}
+poczatek = function(x,n) UseMethod("poczatek")
+poczatek.default    = function(x,n) {
+  elementow = min(n, length(x))
+  x[1:elementow]
+}
+poczatek.matrix     = function(x,n) {
+  elementow1 = min(n, dim(x)[1])
+  elementow2 = min(n, dim(x)[2])
+  x[1:elementow1, 1:elementow2]
+}
+poczatek.data.frame = poczatek.matrix
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+print("TODO")
+```
+
+# RR Zadanie 1.11 {.tabset}
+
+Narysuj funkcję, która w układzie biegunowym ma współrzędne:
+$$
+r=1+\sin(t)\\
+\phi=c * t.
+$$
+
+dla $c=1, c=0.1$ i $c=2.2$. Zobacz przykład na rysunku 1.6.
+
+  > Wskazówka: trzeba
+zamienić współrzędne
+na układ kartezjański
+przekształceniami $x=r\cos(\phi)$ i $y=r\sin(\phi)$. Autor
+upierał się, że tego
+uczą w gimnazjum
+i takie podpowiedzi są
+zbędne, ale prawda jest
+taka, że autor nigdy nie
+był w gimnazjum.
+Przyp. żony.
+
+## R code
+
+```{r}
+gwiazdka <- function(ile = 1, max=100) {
+ t = seq(0,max,0.001)
+ r = 1+sin(t)
+ p = t*ile
+ x = r*cos(p)
+ y = r*sin(p)
+ plot(x,y,type="l")
+}
+
+gwiazdka()
+gwiazdka(2.2)
+gwiazdka(1/2)
+gwiazdka(1/10)
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import numpy as np
+
+def gwiazdka(ile=1, max=100):
+    t = np.arange(0,max+0.1,0.001)
+    r = 1+np.sin(t)
+    p = t*ile
+    x = r*np.cos(p)
+    y = r*np.sin(p)
+    return plt.plot(x,y)
+
+import matplotlib.pyplot as plt
+
+fig = plt.figure(figsize=(10,6))
+gwiazdka(ile=1)
+plt.tight_layout()
+plt.savefig('R01_1.png')
+fig = plt.figure(figsize=(10,6))
+gwiazdka(ile=2.2)
+plt.tight_layout()
+plt.savefig('R01_2.png')
+fig = plt.figure(figsize=(10,6))
+gwiazdka(ile=1/2)
+plt.tight_layout()
+plt.savefig('R01_3.png')
+fig = plt.figure(figsize=(10,6))
+gwiazdka(ile=1/10)
+plt.tight_layout()
+plt.savefig('R01_4.png')
+```
+```{r R01_1, echo=FALSE, fig.pos= 'h', fig.show='hold', fig.align='center', fig.cap="Wykresy.", out.width = '80%'}
+knitr::include_graphics("R01_1.png")
+```
+```{r R01_2, echo=FALSE, fig.pos= 'h', fig.show='hold', fig.align='center', fig.cap="Wykresy.", out.width = '80%'}
+knitr::include_graphics("R01_2.png")
+```
+```{r R01_3, echo=FALSE, fig.pos= 'h', fig.show='hold', fig.align='center', fig.cap="Wykresy.", out.width = '80%'}
+knitr::include_graphics("R01_3.png")
+```
+```{r R01_4, echo=FALSE, fig.pos= 'h', fig.show='hold', fig.align='center', fig.cap="Wykresy.", out.width = '80%'}
+knitr::include_graphics("R01_4.png")
+```
+
+# R Zadanie 1.12 {.tabset}
+
+Używając instrukcji `curve()` narysuj wykres funkcji $f(x) = 2x^3 - x^2 + 3$ na
+przedziale [0, 1].
+
+Na wykresie tej funkcji zaznacz punkty odpowiadające wartościom w punktach 0.2 i 0.8, a następnie na wykres nanieś napisy opisujące współrzędne
+tych punktów. Zobacz przykład na rysunku 1.7
+
+## R code
+
+```{r}
+curve(2*x^3-x^2+3,0,1)
+x = c(0.2, 0.8)
+y = 2*x^3-x^2+3
+points(x, y, pch=19, cex=1.5)
+napis = paste("[", x, "," , y,"]", sep="")
+text(x, y+0.05, napis)
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig = plt.figure(figsize=(10,6))
+X = np.linspace(0,1,300)
+C = lambda x: 2*x**3-x**2+3
+plt.plot(X,C(X))
+A = 0.2; B = 0.8
+plt.text(A,C(A),s='[%.1f,%.3f]' % (A,C(A)),ha='center',va='bottom')
+plt.text(B,C(B),s='[%.1f,%.3f]' % (B,C(B)),ha='center',va='bottom')
+plt.plot([A,B],[C(A),C(B)],'o')
+plt.tight_layout()
+plt.savefig('plot1_12.png')
+```
+```{r plot1_12, echo=FALSE, fig.pos= 'h', fig.show='hold', fig.align='center', fig.cap="Wykresy.", out.width = '80%'}
+knitr::include_graphics("plot1_12.png")
+```
+
+# R Zadanie 1.13 {.tabset}
+
+Pod adresem [http://www.biecek.pl/R/dane/daneBioTech.csv](http://www.biecek.pl/R/dane/daneBioTech.csv) znajduje
+się plik tekstowy z danymi. Dane są w formacie tabelarycznym, mają nagłówek, kolejne pola rozdzielane są średnikiem a kropką dziesiętną jest przecinek. Wczytaj te dane do programu R i przypisz je do zmiennej `daneBT`.
+
+## R code
+  
+```{r}
+daneBT = read.table("http://www.biecek.pl/R/dane/daneBioTech.csv", sep=";", dec=",", header=T,fileEncoding="ISO-8859-2")
+head(daneBT,2)
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+
+daneBT = pd.read_csv("http://www.biecek.pl/R/dane/daneBioTech.csv",sep=';',decimal=',', header=0, encoding='iso8859_2')
+daneBT = daneBT.rename(columns=lambda x: x.replace(' ', '_'))
+
+print(daneBT.head(2))
+```
+
+# R Zadanie 1.14 {.tabset}
+
+Z odczytanych w poprzednim zadaniu danych wybierz tylko pierwsze trzy
+kolumny i pierwsze 10 wierszy. Zapisz ten fragment danych do pliku
+`maleDane.txt` na dysk `c:\` (użytkownicy Linuxa mogą zapisać do innego
+katalogu). Rozdzielaj kolejne pola znakiem tabulacji a kropką dziesiętną będzie kropka. Sprawdź w dowolnym edytorze tekstowym, co zapisało się do tego pliku.
+
+## R code
+
+```{r}
+write.table(daneBT[1:10,1:3], "~/Pulpit/maleDane.txt", sep="\t", dec=".")
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+import numpy as np
+
+daneBT = pd.read_csv("http://www.biecek.pl/R/dane/daneBioTech.csv",sep=';',decimal=',', header=0, encoding='iso8859_2')
+daneBT = daneBT.rename(columns=lambda x: x.replace(' ', '_'))
+
+wiersz = np.arange(1,10+1,1).tolist()
+daneBT.iloc[wiersz,[0,1,2]].to_csv('MaleDane.txt', sep='\t', decimal='.',quoting=1)
+```
+
+# RR Zadanie 1.15 {.tabset}
+
+Skonstruuj wektor 100 liczb, który jest symetryczny (tzn. elementy czytane
+od końca tworzą ten sam wektor co elementy czytane od początku). Pierwsze 20 liczb to kolejne liczby naturalne, następnie występuje 10 zer, następnie
+20 kolejnych liczb parzystych (pozostałe elementy określone są przez warunek symetrii). Napisz funkcję, która sprawdza czy wektor jest symetryczny
+i sprawdź czy wygenerowany wektor jest symetryczny.
+
+## R code
+
+```{r}
+czyPalindrom <- function(x) {
+ all(x==rev(x))
+}
+
+wektor = c(1:20, numeric(10), seq(2,40,2), seq(40,2,-2), numeric(10), 20:1)
+czyPalindrom(wektor)
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import numpy as np
+
+wektor = list(np.arange(1,20+1,1)) + [0]*10 + list(np.arange(2,40+2,2)) + list(reversed(np.arange(2,40+2,2))) + [0]*10 + list(reversed(np.arange(1,20+1,1)))
+czyPalindrom = lambda x: np.all(x == list(reversed(x)))
+
+print(czyPalindrom(wektor))
+```
+
+# RRR Zadanie 1.16 {.tabset}
+
+Napisz funkcję `localMin()`, której argumentem będzie ramka danych, a wynikiem będą te wiersze, w których w jakiejkolwiek liczbowej kolumnie występuje wartość najmniejsza dla tej kolumny. Kolumny z wartościami nieliczbowymi nie powinny być brane pod uwagę.
+
+Innymi słowy jeżeli ramka ma trzy kolumny z wartościami liczbowymi, to
+wynikiem powinny być wiersze, w których w pierwszej kolumnie występują
+wartości minimalne dla pierwszej kolumny oraz wiersze, w których w drugiej kolumnie występują wartości minimalne dla drugiej kolumny oraz wiersze, w których w trzeciej kolumnie występują wartości minimalne dla trzeciej kolumny. Odczytaj ramkę danych z zadania 1.13 i sprawdź działanie napisanej funkcji.
+
+## R code
+
+```{r}
+localMin <- function(x) {
+ indMin = NULL
+ for (i in 1:ncol(x)) {
+ 	 if (class(x[,i])=="numeric") 
+ 	   indMin = c(indMin, which(x[,i]==min(x[,i])))
+ }
+ x[sort(unique(indMin)),]
+}
+
+localMin(daneBT)
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+import numpy as np
+
+daneBT = pd.read_csv("http://www.biecek.pl/R/dane/daneBioTech.csv",sep=';',decimal=',', header=0, encoding='iso8859_2')
+daneBT = daneBT.rename(columns=lambda x: x.replace(' ', '_'))
+
+def localMin(x):
+    res = x.select_dtypes(np.number)
+    ind = np.unique(np.sort(res.idxmin()).tolist())
+    return x.iloc[ind,:]
+
+print(localMin(daneBT))
+```
+
+# R Zadanie 1.17 {.tabset}
+
+Poniższa funkcja nie działa poprawnie, powinna wyznaczać kwadraty kolejnych liczb ale tego nie robi. Skopiuj ją do programu R a następnie użyj
+instrukcji `fix()`, by poprawić funkcję `kwadratyLiczb()`.
+```
+kwadratyLiczb <- function(x) {
+1:x^2
+}
+```
+
+## R code
+
+```{r}
+kwadratyLiczb <- function(x) {
+  (1:x)**2
+  }
+kwadratyLiczb(4)
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import numpy as np
+
+kwadraty = lambda x: np.arange(1,x+1,1)**2
+print(kwadraty(4))
+```
+
+# R Zadanie 1.18 {.tabset}
+
+Funkcja `ecdf()`, wyznacza dystrybuantę empiryczną. Przyjrzyj się trzeciej
+linii z poniższego przykładu oraz spróbuj przewidzieć co jest wynikiem tego
+wyrażenia i jaka funkcja jest wywoływana jako druga.
+
+```
+data(iris)
+x <- iris[,1]
+ecdf(x)(x)
+```
+
+## R code
+
+```{r}
+
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import seaborn as sns
+from statsmodels.distributions.empirical_distribution import *
+
+iris = sns.load_dataset("iris")
+x = iris.iloc[:,0]
+ECDF(x)(x)
+```
+
+# R Zadanie 1.19 {.tabset}
+
+Znajdź liczbę `x` z przedziału [0 − 1] dla którego poniższe wyrażenie zwraca
+wartość `FALSE`.
+
+`x + 0.1 + 0.1 == 0.1 + 0.1 + x`
+
+## R code
+
+```{r}
+x <- seq(0,1,by=0.1)
+x + 0.1 + 0.1 == 0.1 + 0.1 + x
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import numpy as np
+
+x = np.arange(0,1+0.1,0.1)
+print(x + 0.1 + 0.1 == 0.1 + 0.1 + x)
+```
+
+# R Zadanie 1.20 {.tabset}
+
+Dla zbioru danych `iris` narysuj wykres przedstawiający zależność pomiędzy
+dwoma wybranymi zmiennymi. Użyj funkcji `png()` i `pdf()` aby zapisać ten
+wykres do pliku.
+
+## R code
+
+```{r}
+data(iris)
+
+pdf("plotR_01.pdf", 5, 5)
+plot(iris$Sepal.Length,iris$Sepal.Width)
+dev.off()
+
+png("plotR_02.png")
+plot(iris$Sepal.Length,iris$Sepal.Width)
+dev.off()
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import seaborn as sns
+
+iris = sns.load_dataset("iris")
+
+import matplotlib.pyplot as plt
+
+fig = plt.figure(figsize=(10,6))
+plt.plot(iris['sepal_length'],iris['sepal_width'],'.')
+plt.savefig('plotP_01.pdf')
+
+fig = plt.figure(figsize=(10,6))
+plt.plot(iris['sepal_length'],iris['sepal_width'],'.')
+plt.savefig('plotP_02.png')
+```

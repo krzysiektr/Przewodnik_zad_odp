@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1567867296678.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A5878E34",
+    "lastKnownWriteTime" : 1568136092,
+    "last_content_update" : 1568136092610,
+    "path" : "~/Pulpit/Gitbook_github/Przewodnik_zad_odp/R_03.Rmd",
+    "project_path" : "R_03.Rmd",
+    "properties" : {
+        "cursorPosition" : "677,0",
+        "scrollLine" : "671"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

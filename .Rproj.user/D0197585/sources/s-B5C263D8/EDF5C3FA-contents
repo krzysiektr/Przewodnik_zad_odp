@@ -1,0 +1,14 @@
+name: "Przewodnik po pakiecie R - zadania i odpowiedzi"
+navbar:
+  left:
+    - text: "Przewodnik po pakiecie R - zadania i odpowiedzi"
+      href: index.html
+    - text: "Rozdział pierwszy"
+      href: R_01.html
+    - text: "Rozdział drugi"
+      href: R_02.html
+    - text: "Rozdział trzeci"
+      href: R_03.html
+    - text: "Rozdział czwarty"
+      href: R_04.html
+output_dir: "docs"

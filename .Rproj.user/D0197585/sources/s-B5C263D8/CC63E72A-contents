@@ -1,0 +1,26 @@
+---
+title: "Przewodnik po pakiecie R - zadania i odpowiedzi"
+author: "by [Przemysław Biecek](http://biecek.pl/R/PrzewodnikPoPakiecieRWydanieIII_zadania.pdf)"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: true
+    toc_depth: 3
+    #code_folding: hide
+    theme: "sandstone"  
+    highlight: zenburn
+    css: styles.css
+---
+  
+Zadania zostały podzielone na trzy poziomy trudności, oznaczane liczbą liter R:
+
+* R zadania podstawowe, bazujące wyłącznie na materiale z tej książki (dla większości użytkowników jest to zakres wystarczający do codziennej pracy z programem R),
+
+* RR zadania o podwyższonej trudności, dla biegłych użytkowników, wymagają
+często poszukania dodatkowych informacji w sieci lub w plikach pomocy R,
+  
+* RRR zadania typu "sprawdź się", najczęściej można je rozwiązać na wiele sposobów, rzecz w tym, by wybrać ten najlepszy.
+
+Pod adresem http://www.biecek.pl/R/odpowiedzi.R znajdują się przykładowe rozwiązania poniższych zadań. Zapraszamy czytelników do zgłaszania własnych ciekawych rozwiązań i/lub zadań.

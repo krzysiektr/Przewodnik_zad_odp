@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Krzysztof Trajkowski kody w Python" />
+
+
+<title>Zadania do części ‘gRrrafika’</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Przewodnik po pakiecie R - zadania i odpowiedzi</a>
+</li>
+<li>
+  <a href="R_01.html">Rozdział pierwszy</a>
+</li>
+<li>
+  <a href="R_02.html">Rozdział drugi</a>
+</li>
+<li>
+  <a href="R_03.html">Rozdział trzeci</a>
+</li>
+<li>
+  <a href="R_04.html">Rozdział czwarty</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Zadania do części ‘gRrrafika’</h1>
+<h4 class="author"><a href="https://github.com/krzysiektr/">Krzysztof Trajkowski</a> kody w Python</h4>
+<h4 class="date">10 września 2019</h4>
+
+</div>
+
+
+<div id="r-zadanie-4.1" class="section level1 tabset">
+<h1>R Zadanie 4.1</h1>
+<p>Dla pary zmiennych <code>cisnienie.skurczowe</code> i <code>cisnienie.rozkurczowe</code> ze zbioru danych <code>daneSoc</code> wyznacz histogram dwuwymiarowy. Aby poprawić czytelność wybierz odpowiednią liczbę klas.</p>
+<div id="r-code" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(gplots)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">attach</span>(daneSoc)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">hist2d</span>(cisnienie.skurczowe, cisnienie.rozkurczowe, <span class="dt">nbins=</span><span class="dv">15</span>)</a></code></pre></div>
+<p><img src="R_04_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre><code>## 
+## ----------------------------
+## 2-D Histogram Object
+## ----------------------------
+## 
+## Call: hist2d(x = cisnienie.skurczowe, y = cisnienie.rozkurczowe, nbins = 15)
+## 
+## Number of data points:  204 
+## Number of grid bins:  15 x 15 
+## X range: ( 93 , 178 )
+## Y range: ( 57 , 107 )</code></pre>
+</div>
+<div id="python-code" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">daneSoc <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneSoc.csv&quot;</span>, sep<span class="op">=</span><span class="st">&quot;;&quot;</span>)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">daneSoc <span class="op">=</span> daneSoc.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39; &#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">plt.hist2d(daneSoc[<span class="st">&#39;cisnienie_skurczowe&#39;</span>],daneSoc[<span class="st">&#39;cisnienie_rozkurczowe&#39;</span>], bins<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">15</span>))</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">plt.tight_layout()</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">plt.savefig(<span class="st">&#39;R04_1.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="R04_1.png" alt="Wykresy." width="50%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="r-zadanie-4.2" class="section level1 tabset">
+<h1>R Zadanie 4.2</h1>
+<p>Dla pary zmiennych <code>Nowotwor</code> i <code>Wiek</code> ze zbioru danych <code>daneO</code> wyznacz wykres słonecznikowy.</p>
+<div id="r-code-1" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">attach</span>(daneO)</a></code></pre></div>
+<pre><code>## The following objects are masked from daneO (pos = 10):
+## 
+##     Niepowodzenia, noweVEGF, Nowotwor, Okres.bez.wznowy,
+##     Receptory.estrogenowe, Receptory.progesteronowe, Rozmiar.guza,
+##     VEGF, Wezly.chlonne, Wiek</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">sunflowerplot</span>(daneO<span class="op">$</span>Wiek[<span class="op">!</span><span class="kw">is.na</span>(daneO<span class="op">$</span>Nowotwor)], <span class="kw">na.omit</span>(daneO<span class="op">$</span>Nowotwor))</a></code></pre></div>
+<p><img src="R_04_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="python-code-1" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;TODO&quot;</span>)</a></code></pre></div>
+<pre><code>## TODO</code></pre>
+</div>
+</div>
+<div id="r-zadanie-4.3" class="section level1 tabset">
+<h1>R Zadanie 4.3</h1>
+<p>Narysuj macierz wykresów rozrzutu dla zbioru danych mieszkania.</p>
+<blockquote>
+<p>Użyj kilku poznanych funkcji. Który wykres jest najbardziej czytelny?</p>
+</blockquote>
+<div id="r-code-2" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">pairs</span>(mieszkania)</a></code></pre></div>
+<p><img src="R_04_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">GGally<span class="op">::</span><span class="kw">ggpairs</span>(mieszkania)</a></code></pre></div>
+<p><img src="R_04_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+</div>
+<div id="python-code-2" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">mieszkania <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneMieszkania.csv&quot;</span>,sep<span class="op">=</span><span class="st">&#39;;&#39;</span>)</a></code></pre></div>
+</div>
+</div>
+<div id="rr-zadanie-4.4" class="section level1 tabset">
+<h1>RR Zadanie 4.4</h1>
+<p>Dla zmiennych <code>cisnienie.skurczowe</code> i <code>cisnienie.rozkurczowe</code> ze zbioru danych <code>daneSoc</code> wyznacz dwuwymiarową gęstość i narysuj wykres konturowy.</p>
+<div id="r-code-3" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">library</span>(ks)</a></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;ks&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:sm&#39;:
+## 
+##     binning</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">danetmp =<span class="st"> </span>daneSoc[, <span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">7</span>)]</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">mcov =<span class="st"> </span><span class="kw">Hscv</span>(danetmp)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">gest2d =<span class="st"> </span><span class="kw">kde</span>(danetmp, <span class="dt">H=</span>mcov)</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">plot</span>(gest2d, <span class="dt">cont=</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">25</span>,<span class="dv">50</span>,<span class="dv">75</span>,<span class="dv">95</span>))</a></code></pre></div>
+<p><img src="R_04_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="python-code-3" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="im">from</span> scipy <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="im">import</span> scipy.stats <span class="im">as</span> stats</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">daneSoc <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneSoc.csv&quot;</span>, sep<span class="op">=</span><span class="st">&quot;;&quot;</span>)</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">daneSoc <span class="op">=</span> daneSoc.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39; &#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb16-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb16-9" data-line-number="9">data <span class="op">=</span> vstack([daneSoc[<span class="st">&#39;cisnienie_skurczowe&#39;</span>],daneSoc[<span class="st">&#39;cisnienie_rozkurczowe&#39;</span>]])</a>
+<a class="sourceLine" id="cb16-10" data-line-number="10">kde <span class="op">=</span> stats.kde.gaussian_kde(data)</a>
+<a class="sourceLine" id="cb16-11" data-line-number="11">xgrid <span class="op">=</span> linspace(daneSoc[<span class="st">&#39;cisnienie_skurczowe&#39;</span>].<span class="bu">min</span>(),daneSoc[<span class="st">&#39;cisnienie_skurczowe&#39;</span>].<span class="bu">max</span>(),<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb16-12" data-line-number="12">ygrid <span class="op">=</span> linspace(daneSoc[<span class="st">&#39;cisnienie_rozkurczowe&#39;</span>].<span class="bu">min</span>(),daneSoc[<span class="st">&#39;cisnienie_rozkurczowe&#39;</span>].<span class="bu">max</span>(),<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb16-13" data-line-number="13">Xgrid, Ygrid <span class="op">=</span> meshgrid(xgrid,ygrid)</a>
+<a class="sourceLine" id="cb16-14" data-line-number="14">Z <span class="op">=</span> kde.evaluate(vstack([Xgrid.ravel(),Ygrid.ravel()]))</a>
+<a class="sourceLine" id="cb16-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb16-16" data-line-number="16">plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb16-17" data-line-number="17">contours <span class="op">=</span> plt.contour(Z.reshape(Xgrid.shape))</a>
+<a class="sourceLine" id="cb16-18" data-line-number="18">plt.clabel(contours,inline<span class="op">=</span><span class="va">True</span>,fontsize<span class="op">=</span><span class="dv">8</span>,fmt<span class="op">=</span><span class="st">&#39;</span><span class="sc">%.5f</span><span class="st">&#39;</span>)</a>
+<a class="sourceLine" id="cb16-19" data-line-number="19">plt.xlabel(<span class="st">&quot;cisnienie_skurczowe&quot;</span>)<span class="op">;</span> plt.ylabel(<span class="st">&quot;cisnienie_rozkurczowe&quot;</span>)</a>
+<a class="sourceLine" id="cb16-20" data-line-number="20">plt.tight_layout()</a>
+<a class="sourceLine" id="cb16-21" data-line-number="21">plt.savefig(<span class="st">&#39;R04_4.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="R04_4.png" alt="Wykresy." width="50%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="r-zadanie-4.5" class="section level1 tabset">
+<h1>R Zadanie 4.5</h1>
+<p>Odczytaj ramkę danych z zadania 1.13. Następnie wyznacz macierz korelacji pomiędzy zmiennymi ilościowymi z tego zbioru danych. Przedstaw ją z użyciem wykresu mapy ciepła i wykresu <code>plotcorr()</code>.</p>
+<div id="r-code-4" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">macierz =<span class="st"> </span><span class="kw">cor</span>(daneBT[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span><span class="op">:</span><span class="dv">13</span>)])</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">library</span>(ellipse)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">plotcorr</span>(macierz)</a></code></pre></div>
+<p><img src="R_04_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">heatmap</span>(macierz, <span class="dt">symm=</span>T)</a></code></pre></div>
+<p><img src="R_04_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+</div>
+<div id="python-code-4" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="im">from</span> biokit <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">daneBT <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneBioTech.csv&quot;</span>,sep<span class="op">=</span><span class="st">&#39;;&#39;</span>,decimal<span class="op">=</span><span class="st">&#39;,&#39;</span>, header<span class="op">=</span><span class="dv">0</span>, encoding<span class="op">=</span><span class="st">&#39;iso8859_2&#39;</span>)</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">daneBT <span class="op">=</span> daneBT.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39; &#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8">df <span class="op">=</span> daneBT.iloc[:,[<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>]]</a>
+<a class="sourceLine" id="cb19-9" data-line-number="9">plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb19-10" data-line-number="10">c <span class="op">=</span> corrplot.Corrplot(df)</a>
+<a class="sourceLine" id="cb19-11" data-line-number="11">c.plot(colorbar<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb19-12" data-line-number="12">plt.tight_layout()</a>
+<a class="sourceLine" id="cb19-13" data-line-number="13">plt.savefig(<span class="st">&#39;R04_5a.png&#39;</span>)</a>
+<a class="sourceLine" id="cb19-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb19-15" data-line-number="15">corr <span class="op">=</span> df.corr()</a>
+<a class="sourceLine" id="cb19-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb19-17" data-line-number="17">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>,<span class="dv">8</span>))</a>
+<a class="sourceLine" id="cb19-18" data-line-number="18">h <span class="op">=</span> Heatmap(corr)</a>
+<a class="sourceLine" id="cb19-19" data-line-number="19">layout <span class="op">=</span> h.plot()</a>
+<a class="sourceLine" id="cb19-20" data-line-number="20">plt.savefig(<span class="st">&#39;R04_5b.png&#39;</span>)</a></code></pre></div>
+<pre><code>## Computing correlation</code></pre>
+<div class="figure" style="text-align: center">
+<img src="R04_5a.png" alt="Wykresy." width="50%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<img src="R04_5b.png" alt="Wykresy." width="80%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="r-zadanie-4.6" class="section level1 tabset">
+<h1>R Zadanie 4.6</h1>
+<p>W kolumnach 4, 5 i 6 w zbiorze danych z zadania 1.13 znajdują się poziomy zmiennej <code>Kreatynina</code> w trzech różnych chwilach czasowych. Używając funkcji <code>matplot()</code> narysuj zmiany tych zmiennych dla pierwszych 5 pacjentów.</p>
+<div id="r-code-5" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">matplot</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">7</span>),<span class="kw">t</span>(daneBT[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>]), <span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</a></code></pre></div>
+<p><img src="R_04_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="python-code-5" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">daneBT <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneBioTech.csv&quot;</span>,sep<span class="op">=</span><span class="st">&#39;;&#39;</span>,decimal<span class="op">=</span><span class="st">&#39;,&#39;</span>, header<span class="op">=</span><span class="dv">0</span>, encoding<span class="op">=</span><span class="st">&#39;iso8859_2&#39;</span>)</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">daneBT <span class="op">=</span> daneBT.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39; &#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb22-8" data-line-number="8">plt.plot([<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">7</span>],daneBT.iloc[[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>],[<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]].T)</a>
+<a class="sourceLine" id="cb22-9" data-line-number="9">plt.tight_layout()</a>
+<a class="sourceLine" id="cb22-10" data-line-number="10">plt.savefig(<span class="st">&#39;R04_6.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="R04_6.png" alt="Wykresy." width="50%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="rr-zadanie-4.7" class="section level1 tabset">
+<h1>RR Zadanie 4.7</h1>
+<p>Napisz funkcję, która za argumenty przyjmie dwa wektory liczb o równej długości. Następnie narysuje na jednym wykresie oba wektory (na osi OX będą kolejne liczby naturalne), każdy z własną osią OY (jedna oś narysowana powinna być po lewej stronie, druga po prawej). Osie, podobnie jak wykresy powinny być rysowane różnymi kolorami. Patrz przykład na rysunku 4.98.</p>
+<div id="r-code-6" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">dwaWykresy &lt;-<span class="st"> </span><span class="cf">function</span>(x1, x2, <span class="dt">col1=</span><span class="st">&quot;black&quot;</span>, <span class="dt">col2=</span><span class="st">&quot;red&quot;</span> , ...) {</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"> x =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x1)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"> <span class="kw">plot</span>(x1, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">col=</span>col1, ...)</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"> szerokosc =<span class="st"> </span><span class="kw">diff</span>(<span class="kw">range</span>(x2))</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"> <span class="kw">par</span>(<span class="dt">usr=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">length</span>(x2),<span class="kw">min</span>(x2)<span class="op">-</span><span class="fl">0.04</span><span class="op">*</span>szerokosc,<span class="kw">min</span>(x2)<span class="op">+</span><span class="fl">1.04</span><span class="op">*</span>szerokosc))</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"> <span class="kw">lines</span>(x2, <span class="dt">col=</span>col2, ...)</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7"> <span class="kw">axis</span>(<span class="dt">side=</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb23-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb23-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb23-10" data-line-number="10">x0 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">500</span>)</a>
+<a class="sourceLine" id="cb23-11" data-line-number="11">x1 =<span class="st"> </span><span class="kw">cumsum</span>(x0)</a>
+<a class="sourceLine" id="cb23-12" data-line-number="12">x2 =<span class="st"> </span><span class="kw">cumsum</span>(<span class="kw">rnorm</span>(<span class="dv">500</span>)<span class="op">-</span>x0<span class="op">/</span><span class="dv">4</span>)<span class="op">*</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb23-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb23-14" data-line-number="14"><span class="kw">dwaWykresy</span>(x1,x2, <span class="dt">lwd=</span><span class="dv">2</span>)</a></code></pre></div>
+<p><img src="R_04_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="python-code-6" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="im">import</span> scipy.stats <span class="im">as</span> stats</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="kw">def</span> dwaWykresy(x1,x2,col1<span class="op">=</span><span class="st">&quot;black&quot;</span>,col2<span class="op">=</span><span class="st">&quot;red&quot;</span>):</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">    ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb24-7" data-line-number="7">    ax2 <span class="op">=</span> ax1.twinx()</a>
+<a class="sourceLine" id="cb24-8" data-line-number="8">    A <span class="op">=</span> ax1.plot(np.arange(<span class="dv">1</span>,<span class="bu">len</span>(x1)<span class="op">+</span><span class="dv">1</span>,<span class="dv">1</span>),x1,color<span class="op">=</span>col1)</a>
+<a class="sourceLine" id="cb24-9" data-line-number="9">    B <span class="op">=</span> ax2.plot(np.arange(<span class="dv">1</span>,<span class="bu">len</span>(x2)<span class="op">+</span><span class="dv">1</span>,<span class="dv">1</span>),x2,color<span class="op">=</span>col2)</a>
+<a class="sourceLine" id="cb24-10" data-line-number="10">    <span class="cf">return</span> A<span class="op">;</span> B</a>
+<a class="sourceLine" id="cb24-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb24-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb24-13" data-line-number="13">x0 <span class="op">=</span> stats.norm.rvs(size<span class="op">=</span><span class="dv">500</span>)</a>
+<a class="sourceLine" id="cb24-14" data-line-number="14">x1 <span class="op">=</span> np.cumsum(x0)</a>
+<a class="sourceLine" id="cb24-15" data-line-number="15">x2 <span class="op">=</span> np.cumsum(stats.norm.rvs(size<span class="op">=</span><span class="dv">500</span>)<span class="op">-</span>x0<span class="op">/</span><span class="dv">4</span>)<span class="op">*</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb24-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb24-17" data-line-number="17">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb24-18" data-line-number="18">dwaWykresy(x1,x2)</a>
+<a class="sourceLine" id="cb24-19" data-line-number="19">plt.tight_layout()</a>
+<a class="sourceLine" id="cb24-20" data-line-number="20">plt.savefig(<span class="st">&#39;R04_7.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="R04_7.png" alt="Wykresy." width="50%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="rrr-zadanie-4.8" class="section level1 tabset">
+<h1>RRR Zadanie 4.8</h1>
+<p>Narysuj dwa wykresy obok siebie. Na lewym wykresie narysuj pięć punktów o losowych współrzędnych (punkty zaznacz gwiazdkami), na prawym narysuj pięć punktów, również o losowych współrzędnych (zaznacz je okręgami). Następnie połącz strzałkami punkty z lewego wykresu z punktami z prawego wykresu (połączenie powinno być dokładne i niezależne od wymiarów urządzenia graficznego). Zobacz przykład na rysunku 4.99.</p>
+<div id="r-code-7" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">xpd=</span><span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">x =<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">y =<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="kw">plot</span>(x[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>],y[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">pch=</span><span class="dv">8</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">cex=</span><span class="fl">1.5</span>,<span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="kw">plot</span>(x[<span class="dv">6</span><span class="op">:</span><span class="dv">10</span>],y[<span class="dv">6</span><span class="op">:</span><span class="dv">10</span>], <span class="dt">pch=</span><span class="dv">1</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">cex=</span><span class="fl">1.5</span>,<span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb25-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="kw">par</span>(<span class="dt">usr=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.04</span>,<span class="fl">1.04</span>,<span class="op">-</span><span class="fl">0.04</span>,<span class="fl">1.04</span>))</a>
+<a class="sourceLine" id="cb25-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10">margines =<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="kw">par</span>()<span class="op">$</span>plt[<span class="dv">1</span>]<span class="op">/</span><span class="kw">diff</span>(<span class="kw">par</span>()<span class="op">$</span>plt[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb25-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb25-12" data-line-number="12"><span class="kw">arrows</span>(x[<span class="dv">6</span><span class="op">:</span><span class="dv">10</span>],y[<span class="dv">6</span><span class="op">:</span><span class="dv">10</span>],x[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]<span class="op">-</span><span class="dv">1</span><span class="op">-</span>margines,y[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">code=</span><span class="dv">3</span>, <span class="dt">angle=</span><span class="dv">15</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="R_04_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="python-code-7" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;TODO&quot;</span>)</a></code></pre></div>
+<pre><code>## TODO</code></pre>
+</div>
+</div>
+<div id="rr-zadanie-4.9" class="section level1 tabset">
+<h1>RR Zadanie 4.9</h1>
+<p>Ze strony <a href="http://smarterpoland.pl/index.php/zbiory-danych/"><code>http://smarterpoland.pl/index.php/zbiory-danych/</code></a> pobierz dane dotyczące cen ofertowych sprzedaży używanych samochodów. Następnie przedstaw graficznie zależność pomiędzy wiekiem auta a ceną w podziale na róże marki / modele.</p>
+<p>Wykonaj ten wykres używając najpierw funkcji z pakietu <code>graphics</code> a następnie <code>lattice</code> i <code>ggplot</code>. Z użyciem którego pakietu łatwiej było otrzymać wyniki o lepszej jakości?</p>
+<div id="r-code-8" class="section level2">
+<h2>R code</h2>
+</div>
+<div id="python-code-8" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;TODO&quot;</span>)</a></code></pre></div>
+<pre><code>## TODO</code></pre>
+</div>
+</div>
+<div id="rrr-zadanie-4.10" class="section level1 tabset">
+<h1>RRR Zadanie 4.10</h1>
+<p>Ze strony <a href="http://smarterpoland.pl/index.php/zbiory-danych/"><code>http://smarterpoland.pl/index.php/zbiory-danych</code>/</a> pobierz dane dotyczące nagłówków RSS z różnych postali informacyjnych. Następnie przedstaw graĕcznie jak z czasem zmienia się częstość używania określonych słów w różnych portalach. Porównaj wyniki dla słowa szok i polityk.</p>
+<div id="r-code-9" class="section level2">
+<h2>R code</h2>
+</div>
+<div id="python-code-9" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;TODO&quot;</span>)</a></code></pre></div>
+<pre><code>## TODO</code></pre>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

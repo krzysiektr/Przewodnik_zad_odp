@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Krzysztof Trajkowski kody w Python" />
+
+
+<title>Zadania do części ‘Wybrane procedury statystyczne’</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Przewodnik po pakiecie R - zadania i odpowiedzi</a>
+</li>
+<li>
+  <a href="R_01.html">Rozdział pierwszy</a>
+</li>
+<li>
+  <a href="R_02.html">Rozdział drugi</a>
+</li>
+<li>
+  <a href="R_03.html">Rozdział trzeci</a>
+</li>
+<li>
+  <a href="R_04.html">Rozdział czwarty</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Zadania do części ‘Wybrane procedury statystyczne’</h1>
+<h4 class="author"><a href="https://github.com/krzysiektr/">Krzysztof Trajkowski</a> kody w Python</h4>
+<h4 class="date">10 września 2019</h4>
+
+</div>
+
+
+<div id="r-zadanie-3.1" class="section level1 tabset">
+<h1>R Zadanie 3.1</h1>
+<p>Napisz funkcję <code>momenty()</code>, która dla zadanego wektora liczb wyznaczy średnią, wariancję, skośność i kurtozę.</p>
+<div id="r-code" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">momenty &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">require</span>(e1071)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="kw">c</span>(<span class="dt">srednia =</span> <span class="kw">mean</span>(x), <span class="dt">wariancja =</span> <span class="kw">var</span>(x), <span class="dt">skosnosc =</span> <span class="kw">skewness</span>(x), <span class="dt">kurtoza =</span> <span class="kw">kurtosis</span>(x))</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">momenty</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>))</a></code></pre></div>
+<pre><code>## Loading required package: e1071</code></pre>
+<pre><code>##    srednia  wariancja   skosnosc    kurtoza 
+## 0.01876346 0.73078885 1.10262850 0.54934996</code></pre>
+</div>
+<div id="python-code" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="im">import</span> scipy.stats <span class="im">as</span> stats</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">def</span> momenty(x):</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    mu <span class="op">=</span> np.mean(x)</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">    var <span class="op">=</span> np.var(x,ddof<span class="op">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">    sk <span class="op">=</span> stats.skew(x)</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">    ku <span class="op">=</span> stats.kurtosis(x)</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">    <span class="cf">return</span> pd.DataFrame({<span class="st">&#39;średnia&#39;</span> :[mu], <span class="st">&#39;wariancja&#39;</span> :[var],<span class="op">\</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">                   <span class="st">&#39;skośność&#39;</span>:[sk], <span class="st">&#39;kurtoza&#39;</span>:[ku]})</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="bu">print</span>(momenty(stats.norm.rvs(size<span class="op">=</span><span class="dv">20</span>)))</a></code></pre></div>
+<pre><code>##     średnia  wariancja  skośność  kurtoza
+## 0  0.129156   0.799661 -0.509082 -0.34078</code></pre>
+</div>
+</div>
+<div id="rr-zadanie-3.2" class="section level1 tabset">
+<h1>RR Zadanie 3.2</h1>
+<p>Ze zbioru danych <code>daneO</code> wyciągnij zmienną <code>VEGF</code> i narysuj dla niej histogram (ile podziałów przyjąć?). Co o zmiennej mówi ten histogram? Zastosuj transformację, która ustabilizuje tą zmienną, a następnie narysuj histogram dla transformowanych danych. Na histogramie zamiast liczebności zaznacz prawdopodobieństwa, następnie dorysuj do tego wykresu ocenę gęstości wyznaczoną z użyciem funkcji <code>density()</code>.</p>
+<div id="r-code-1" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">hist</span>(daneO<span class="op">$</span>VEGF,<span class="dv">30</span>)</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">daneO<span class="op">$</span>noweVEGF =<span class="st"> </span><span class="kw">log</span>(daneO<span class="op">$</span>VEGF)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">hist</span>(daneO<span class="op">$</span>noweVEGF,<span class="dv">30</span>, <span class="dt">probability =</span>T)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">gest =<span class="st"> </span><span class="kw">density</span>(daneO<span class="op">$</span>noweVEGF)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">lines</span>(gest<span class="op">$</span>x, gest<span class="op">$</span>y, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>)</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+</div>
+<div id="python-code-1" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="im">import</span> scipy.stats <span class="im">as</span> stats</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">daneO <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneO.csv&quot;</span>,sep<span class="op">=</span><span class="st">&quot;;&quot;</span>,header<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>,<span class="dv">6</span>))</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">ax1.hist(daneO[<span class="st">&#39;VEGF&#39;</span>],bins<span class="op">=</span><span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">N,bins,patches <span class="op">=</span> ax2.hist(np.log(daneO[<span class="st">&#39;VEGF&#39;</span>]),bins<span class="op">=</span><span class="dv">30</span>,density<span class="op">=</span><span class="va">True</span>)</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13">X <span class="op">=</span> np.linspace(np.<span class="bu">min</span>(bins), np.<span class="bu">max</span>(bins), <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb8-14" data-line-number="14">density <span class="op">=</span> stats.gaussian_kde(np.log(daneO[<span class="st">&#39;VEGF&#39;</span>]))</a>
+<a class="sourceLine" id="cb8-15" data-line-number="15">ax2.plot(X,density(X),color<span class="op">=</span><span class="st">&#39;red&#39;</span>,linewidth<span class="op">=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16">plt.tight_layout()</a>
+<a class="sourceLine" id="cb8-17" data-line-number="17">plt.savefig(<span class="st">&#39;z32.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="z32.png" alt="Wykresy." width="100%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="r-zadanie-3.3" class="section level1 tabset">
+<h1>R Zadanie 3.3</h1>
+<p>W zbiorze danych <code>daneO</code> znajduje się zmienna liczbowa Wiek i czynnikowa <code>Receptory.estrogenowe</code>. Narysuj wykres pudełkowy dla zmiennej <code>Wiek</code> w rozbiciu na zmienną <code>Receptory.estrogenowe</code>. Narysuj wykres skrzypcowy dla zmiennej <code>Wiek</code> w rozbiciu na poziomy zmiennej <code>Niepowodzenia</code>.</p>
+<div id="r-code-2" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">boxplot</span>(daneO<span class="op">$</span>Wiek<span class="op">~</span>daneO<span class="op">$</span>Receptory.estrogenowe)</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">library</span>(vioplot)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">with</span>(daneO, <span class="kw">vioplot</span>(Wiek[Niepowodzenia<span class="op">==</span><span class="st">&quot;wznowa&quot;</span>], Wiek[Niepowodzenia<span class="op">!=</span><span class="st">&quot;wznowa&quot;</span>]))</a></code></pre></div>
+<pre><code>## [1] 29 57</code></pre>
+<p><img src="R_03_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+</div>
+<div id="python-code-2" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="im">import</span> seaborn <span class="im">as</span> sns</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">daneO <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneO.csv&quot;</span>,sep<span class="op">=</span><span class="st">&quot;;&quot;</span>,header<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">daneO <span class="op">=</span> daneO.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39;.&#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>,<span class="dv">6</span>))</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9">ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11">sns.boxplot(x<span class="op">=</span><span class="st">&#39;Receptory_estrogenowe&#39;</span>,y<span class="op">=</span><span class="st">&#39;Wiek&#39;</span>,data<span class="op">=</span>daneO, palette<span class="op">=</span><span class="st">&quot;Set2&quot;</span>, ax<span class="op">=</span>ax1)</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">sns.violinplot(x<span class="op">=</span><span class="st">&#39;Niepowodzenia&#39;</span>,y<span class="op">=</span><span class="st">&#39;Wiek&#39;</span>,data<span class="op">=</span>daneO, palette<span class="op">=</span><span class="st">&quot;Set2&quot;</span>,ax<span class="op">=</span>ax2)</a>
+<a class="sourceLine" id="cb12-13" data-line-number="13">plt.tight_layout()</a>
+<a class="sourceLine" id="cb12-14" data-line-number="14">plt.savefig(<span class="st">&#39;z33.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="z33.png" alt="Wykresy." width="100%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="r-zadanie-3.4" class="section level1 tabset">
+<h1>R Zadanie 3.4</h1>
+<p>Narysuj wykres rozrzutu dla zmiennych <code>Wiek</code> i <code>VEGF</code> (bez krzywej regresji nieparametrycznej). Czy wykres ten zmieni się, jeżeli zmienne będą podane w innej kolejności? Następnie zmienną <code>VEGF</code> narysuj w skali logarytmicznej. Narysuj też wykres rozrzutu dla tych zmiennych w rozbiciu na poziomy zmiennej <code>Niepowodzenia</code>.</p>
+<div id="r-code-3" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">attach</span>(daneO)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">sp</span>(Wiek, VEGF, <span class="dt">smooth=</span>F)</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">sp</span>(VEGF, Wiek, <span class="dt">smooth=</span>F)</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">sp</span>(Wiek, VEGF, <span class="dt">smooth=</span>F, <span class="dt">log=</span><span class="st">&quot;y&quot;</span>)</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">sp</span>(Wiek,VEGF,<span class="dt">groups=</span>Niepowodzenia, <span class="dt">smooth=</span>F, <span class="dt">log=</span><span class="st">&quot;y&quot;</span>)</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-7-4.png" width="672" /></p>
+</div>
+<div id="python-code-3" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">daneO <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneO.csv&quot;</span>,sep<span class="op">=</span><span class="st">&quot;;&quot;</span>,header<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">daneO <span class="op">=</span> daneO.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39;.&#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7">x <span class="op">=</span> daneO[<span class="st">&quot;Wiek&quot;</span>]</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8">y <span class="op">=</span> daneO[<span class="st">&quot;VEGF&quot;</span>]</a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb17-11" data-line-number="11">grid <span class="op">=</span> plt.GridSpec(<span class="dv">4</span>, <span class="dv">4</span>, hspace<span class="op">=</span><span class="fl">0.2</span>, wspace<span class="op">=</span><span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb17-12" data-line-number="12">main_ax <span class="op">=</span> fig.add_subplot(grid[:<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>:])</a>
+<a class="sourceLine" id="cb17-13" data-line-number="13">y_b <span class="op">=</span> fig.add_subplot(grid[:<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>], xticklabels<span class="op">=</span>[], sharey<span class="op">=</span>main_ax)</a>
+<a class="sourceLine" id="cb17-14" data-line-number="14">x_b <span class="op">=</span> fig.add_subplot(grid[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>:], yticklabels<span class="op">=</span>[], sharex<span class="op">=</span>main_ax)</a>
+<a class="sourceLine" id="cb17-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb17-16" data-line-number="16">main_ax.plot(x, y, <span class="st">&#39;ok&#39;</span>, markersize<span class="op">=</span><span class="dv">5</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb17-17" data-line-number="17">main_ax.xaxis.tick_top()</a>
+<a class="sourceLine" id="cb17-18" data-line-number="18">main_ax.yaxis.tick_right()</a>
+<a class="sourceLine" id="cb17-19" data-line-number="19">main_ax.set_xlabel(<span class="st">&#39;Wiek&#39;</span>)</a>
+<a class="sourceLine" id="cb17-20" data-line-number="20">main_ax.set_ylabel(<span class="st">&#39;VEGF&#39;</span>)</a>
+<a class="sourceLine" id="cb17-21" data-line-number="21">x_b.boxplot(x,vert<span class="op">=</span><span class="va">False</span>,widths <span class="op">=</span> <span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb17-22" data-line-number="22">x_b.axis(<span class="st">&#39;off&#39;</span>)</a>
+<a class="sourceLine" id="cb17-23" data-line-number="23">y_b.boxplot(y,widths <span class="op">=</span> <span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb17-24" data-line-number="24">y_b.axis(<span class="st">&#39;off&#39;</span>)</a>
+<a class="sourceLine" id="cb17-25" data-line-number="25">fig.subplots_adjust(bottom <span class="op">=</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb17-26" data-line-number="26">fig.subplots_adjust(left <span class="op">=</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb17-27" data-line-number="27">plt.savefig(<span class="st">&#39;z34a.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="z34a.png" alt="Wykresy." width="60%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">daneO <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneO.csv&quot;</span>,sep<span class="op">=</span><span class="st">&quot;;&quot;</span>,header<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">daneO <span class="op">=</span> daneO.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39;.&#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">y <span class="op">=</span> daneO[<span class="st">&quot;Wiek&quot;</span>]</a>
+<a class="sourceLine" id="cb18-8" data-line-number="8">x <span class="op">=</span> daneO[<span class="st">&quot;VEGF&quot;</span>]</a>
+<a class="sourceLine" id="cb18-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb18-10" data-line-number="10">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb18-11" data-line-number="11">grid <span class="op">=</span> plt.GridSpec(<span class="dv">4</span>, <span class="dv">4</span>, hspace<span class="op">=</span><span class="fl">0.2</span>, wspace<span class="op">=</span><span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb18-12" data-line-number="12">main_ax <span class="op">=</span> fig.add_subplot(grid[:<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>:])</a>
+<a class="sourceLine" id="cb18-13" data-line-number="13">y_b <span class="op">=</span> fig.add_subplot(grid[:<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>], xticklabels<span class="op">=</span>[], sharey<span class="op">=</span>main_ax)</a>
+<a class="sourceLine" id="cb18-14" data-line-number="14">x_b <span class="op">=</span> fig.add_subplot(grid[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>:], yticklabels<span class="op">=</span>[], sharex<span class="op">=</span>main_ax)</a>
+<a class="sourceLine" id="cb18-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb18-16" data-line-number="16">main_ax.plot(x, y, <span class="st">&#39;ok&#39;</span>, markersize<span class="op">=</span><span class="dv">5</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb18-17" data-line-number="17">main_ax.xaxis.tick_top()</a>
+<a class="sourceLine" id="cb18-18" data-line-number="18">main_ax.yaxis.tick_right()</a>
+<a class="sourceLine" id="cb18-19" data-line-number="19">main_ax.set_xlabel(<span class="st">&#39;VEGF&#39;</span>)</a>
+<a class="sourceLine" id="cb18-20" data-line-number="20">main_ax.set_ylabel(<span class="st">&#39;Wiek&#39;</span>)</a>
+<a class="sourceLine" id="cb18-21" data-line-number="21">x_b.boxplot(x,vert<span class="op">=</span><span class="va">False</span>,widths <span class="op">=</span> <span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb18-22" data-line-number="22">x_b.axis(<span class="st">&#39;off&#39;</span>)</a>
+<a class="sourceLine" id="cb18-23" data-line-number="23">y_b.boxplot(y,widths <span class="op">=</span> <span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb18-24" data-line-number="24">y_b.axis(<span class="st">&#39;off&#39;</span>)</a>
+<a class="sourceLine" id="cb18-25" data-line-number="25">fig.subplots_adjust(bottom <span class="op">=</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb18-26" data-line-number="26">fig.subplots_adjust(left <span class="op">=</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb18-27" data-line-number="27">plt.savefig(<span class="st">&#39;z34b.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="z34b.png" alt="Wykresy." width="60%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">daneO <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneO.csv&quot;</span>,sep<span class="op">=</span><span class="st">&quot;;&quot;</span>,header<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">daneO <span class="op">=</span> daneO.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39;.&#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8">x <span class="op">=</span> daneO[<span class="st">&quot;Wiek&quot;</span>]</a>
+<a class="sourceLine" id="cb19-9" data-line-number="9">y <span class="op">=</span> np.log(daneO[<span class="st">&quot;VEGF&quot;</span>])</a>
+<a class="sourceLine" id="cb19-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb19-11" data-line-number="11">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb19-12" data-line-number="12">grid <span class="op">=</span> plt.GridSpec(<span class="dv">4</span>, <span class="dv">4</span>, hspace<span class="op">=</span><span class="fl">0.2</span>, wspace<span class="op">=</span><span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb19-13" data-line-number="13">main_ax <span class="op">=</span> fig.add_subplot(grid[:<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>:])</a>
+<a class="sourceLine" id="cb19-14" data-line-number="14">y_b <span class="op">=</span> fig.add_subplot(grid[:<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>], xticklabels<span class="op">=</span>[], sharey<span class="op">=</span>main_ax)</a>
+<a class="sourceLine" id="cb19-15" data-line-number="15">x_b <span class="op">=</span> fig.add_subplot(grid[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>:], yticklabels<span class="op">=</span>[], sharex<span class="op">=</span>main_ax)</a>
+<a class="sourceLine" id="cb19-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb19-17" data-line-number="17">main_ax.plot(x, y, <span class="st">&#39;ok&#39;</span>, markersize<span class="op">=</span><span class="dv">5</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb19-18" data-line-number="18">main_ax.xaxis.tick_top()</a>
+<a class="sourceLine" id="cb19-19" data-line-number="19">main_ax.yaxis.tick_right()</a>
+<a class="sourceLine" id="cb19-20" data-line-number="20">main_ax.set_xlabel(<span class="st">&#39;Wiek&#39;</span>)</a>
+<a class="sourceLine" id="cb19-21" data-line-number="21">main_ax.set_ylabel(<span class="st">&#39;VEGF&#39;</span>)</a>
+<a class="sourceLine" id="cb19-22" data-line-number="22">x_b.boxplot(x,vert<span class="op">=</span><span class="va">False</span>,widths <span class="op">=</span> <span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb19-23" data-line-number="23">x_b.axis(<span class="st">&#39;off&#39;</span>)</a>
+<a class="sourceLine" id="cb19-24" data-line-number="24">y_b.boxplot(y,widths <span class="op">=</span> <span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb19-25" data-line-number="25">y_b.axis(<span class="st">&#39;off&#39;</span>)</a>
+<a class="sourceLine" id="cb19-26" data-line-number="26">fig.subplots_adjust(bottom <span class="op">=</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb19-27" data-line-number="27">fig.subplots_adjust(left <span class="op">=</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb19-28" data-line-number="28">plt.savefig(<span class="st">&#39;z34c.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="z34c.png" alt="Wykresy." width="60%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="im">import</span> seaborn <span class="im">as</span> sns</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">daneO <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneO.csv&quot;</span>,sep<span class="op">=</span><span class="st">&quot;;&quot;</span>,header<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb20-7" data-line-number="7">daneO <span class="op">=</span> daneO.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39;.&#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb20-8" data-line-number="8">  </a>
+<a class="sourceLine" id="cb20-9" data-line-number="9">plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb20-10" data-line-number="10">g <span class="op">=</span> sns.lmplot(x<span class="op">=</span><span class="st">&quot;Wiek&quot;</span>, y<span class="op">=</span><span class="st">&quot;VEGF&quot;</span>, hue<span class="op">=</span><span class="st">&quot;Niepowodzenia&quot;</span>, truncate<span class="op">=</span><span class="va">True</span>, data<span class="op">=</span>daneO, lowess<span class="op">=</span><span class="va">False</span>,ci<span class="op">=</span><span class="va">None</span>)</a>
+<a class="sourceLine" id="cb20-11" data-line-number="11">g.<span class="bu">set</span>(yscale<span class="op">=</span><span class="st">&#39;log&#39;</span>)</a>
+<a class="sourceLine" id="cb20-12" data-line-number="12">plt.tight_layout()</a>
+<a class="sourceLine" id="cb20-13" data-line-number="13">plt.savefig(<span class="st">&#39;z34d.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="z34d.png" alt="Wykresy." width="60%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="r-zadanie-3.5" class="section level1 tabset">
+<h1>R Zadanie 3.5</h1>
+<p>Wygeneruj 20 liczb z rozkładu wykładniczego i narysuj dla wygenerowanego wektora dystrybuantę empiryczną. Następnie zrób to samo dla wektora 200 i 2000 liczb. Używając funkcji <code>MASS::fitdistr()</code> oceń parametr <code>rate</code> dla wylosowanego wektora.</p>
+<div id="r-code-4" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">x =<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">ecdf</span>(x))</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">MASS<span class="op">::</span><span class="kw">fitdistr</span>(x, <span class="st">&quot;exponential&quot;</span>)</a></code></pre></div>
+<pre><code>##      rate   
+##   0.9035131 
+##  (0.2020317)</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">x =<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">ecdf</span>(x))</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">x =<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">2000</span>)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">ecdf</span>(x))</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-12-3.png" width="672" /></p>
+</div>
+<div id="python-code-4" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="im">import</span> scipy.stats <span class="im">as</span> stats</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="im">from</span> statsmodels.distributions.empirical_distribution <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>,<span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6">ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb26-7" data-line-number="7">ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb26-8" data-line-number="8">ax3 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb26-9" data-line-number="9">x <span class="op">=</span> stats.expon.rvs(size<span class="op">=</span><span class="dv">20</span>, random_state<span class="op">=</span><span class="dv">2305</span>)</a>
+<a class="sourceLine" id="cb26-10" data-line-number="10">ax1.plot(x,ECDF(x)(x),<span class="st">&#39;.&#39;</span>,linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">&#39;C1&#39;</span>)</a>
+<a class="sourceLine" id="cb26-11" data-line-number="11">fit <span class="op">=</span> stats.expon.fit(x)</a>
+<a class="sourceLine" id="cb26-12" data-line-number="12">ax1.set_title(<span class="st">&#39;loc = </span><span class="sc">%.4f</span><span class="st">, rate = </span><span class="sc">%.4f</span><span class="st">&#39;</span> <span class="op">%</span> (fit[<span class="dv">0</span>],fit[<span class="dv">1</span>]))</a>
+<a class="sourceLine" id="cb26-13" data-line-number="13">x <span class="op">=</span> stats.expon.rvs(size<span class="op">=</span><span class="dv">200</span>, random_state<span class="op">=</span><span class="dv">2305</span>)</a>
+<a class="sourceLine" id="cb26-14" data-line-number="14">ax2.plot(x,ECDF(x)(x),<span class="st">&#39;.&#39;</span>,linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">&#39;C1&#39;</span>)</a>
+<a class="sourceLine" id="cb26-15" data-line-number="15">fit <span class="op">=</span> stats.expon.fit(x)</a>
+<a class="sourceLine" id="cb26-16" data-line-number="16">ax2.set_title(<span class="st">&#39;loc = </span><span class="sc">%.4f</span><span class="st">, rate = </span><span class="sc">%.4f</span><span class="st">&#39;</span> <span class="op">%</span> (fit[<span class="dv">0</span>],fit[<span class="dv">1</span>]))</a>
+<a class="sourceLine" id="cb26-17" data-line-number="17">x <span class="op">=</span> stats.expon.rvs(size<span class="op">=</span><span class="dv">2000</span>, random_state<span class="op">=</span><span class="dv">2305</span>)</a>
+<a class="sourceLine" id="cb26-18" data-line-number="18">ax3.plot(x,ECDF(x)(x),<span class="st">&#39;.&#39;</span>,linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">&#39;C1&#39;</span>)</a>
+<a class="sourceLine" id="cb26-19" data-line-number="19">fit <span class="op">=</span> stats.expon.fit(x)</a>
+<a class="sourceLine" id="cb26-20" data-line-number="20">ax3.set_title(<span class="st">&#39;loc = </span><span class="sc">%.4f</span><span class="st">, rate = </span><span class="sc">%.4f</span><span class="st">&#39;</span> <span class="op">%</span> (fit[<span class="dv">0</span>],fit[<span class="dv">1</span>]))</a>
+<a class="sourceLine" id="cb26-21" data-line-number="21">plt.tight_layout()</a>
+<a class="sourceLine" id="cb26-22" data-line-number="22">plt.savefig(<span class="st">&#39;z35.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="z35.png" alt="Wykresy." width="100%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="r-zadanie-3.6" class="section level1 tabset">
+<h1>R Zadanie 3.6</h1>
+<p>Używając metod analizy wariancji sprawdź, średnia której ze zmiennych ilościowych w zbiorze danych <code>daneO</code> różni się w zależności od poziomu zmiennej Niepowodzenia. Następnie zbuduj wektor zawierający p-wartości dla wyników z wykonanych analiz.</p>
+<p>Zmienna <code>Receptory.progesteronowe</code> ma wartości na 4 poziomach. Wykonaj dla niej analizę wariancji oraz testy post hoc.</p>
+<div id="r-code-5" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">(<span class="dt">model1 =</span> <span class="kw">summary</span>(<span class="kw">lm</span>(Wiek<span class="op">~</span>Niepowodzenia, <span class="dt">data =</span> daneO)))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Wiek ~ Niepowodzenia, data = daneO)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -16.869  -3.869   0.131   4.131  11.131 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)          45.8690     0.6783  67.620   &lt;2e-16 ***
+## Niepowodzeniawznowa  -2.6383     1.8529  -1.424    0.158    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.217 on 95 degrees of freedom
+## Multiple R-squared:  0.02089,    Adjusted R-squared:  0.01059 
+## F-statistic: 2.027 on 1 and 95 DF,  p-value: 0.1578</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">(<span class="dt">model2 =</span> <span class="kw">summary</span>(<span class="kw">lm</span>(Okres.bez.wznowy<span class="op">~</span>Niepowodzenia, <span class="dt">data =</span> daneO)))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Okres.bez.wznowy ~ Niepowodzenia, data = daneO)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -22.3846  -5.1928  -0.1928   7.8072  17.6154 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           38.193      1.028  37.155   &lt;2e-16 ***
+## Niepowodzeniawznowa   -5.808      2.793  -2.079   0.0403 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.365 on 94 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.04397,    Adjusted R-squared:  0.0338 
+## F-statistic: 4.323 on 1 and 94 DF,  p-value: 0.04032</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">(<span class="dt">model3 =</span> <span class="kw">summary</span>(<span class="kw">lm</span>(noweVEGF<span class="op">~</span>Niepowodzenia, <span class="dt">data =</span> daneO)))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = noweVEGF ~ Niepowodzenia, data = daneO)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.35166 -0.68619 -0.00433  0.66172  2.68689 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           7.1223     0.1131  62.995  &lt; 2e-16 ***
+## Niepowodzeniawznowa   1.1528     0.3088   3.733 0.000323 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.036 on 95 degrees of freedom
+## Multiple R-squared:  0.1279, Adjusted R-squared:  0.1187 
+## F-statistic: 13.93 on 1 and 95 DF,  p-value: 0.0003227</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">c</span>(<span class="dt">Wiek =</span> model1<span class="op">$</span>coef[<span class="dv">2</span>,<span class="dv">4</span>], <span class="dt">Okres.bez.wznowy =</span> model2<span class="op">$</span>coef[<span class="dv">2</span>,<span class="dv">4</span>], <span class="dt">noweVEGF =</span> model3<span class="op">$</span>coef[<span class="dv">2</span>,<span class="dv">4</span>])</a></code></pre></div>
+<pre><code>##             Wiek Okres.bez.wznowy         noweVEGF 
+##     0.1577660243     0.0403167745     0.0003226867</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">model &lt;-<span class="st"> </span><span class="kw">aov</span>(noweVEGF<span class="op">~</span>Receptory.progesteronowe, <span class="dt">data =</span> daneO)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="kw">TukeyHSD</span>(model)</a></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = noweVEGF ~ Receptory.progesteronowe, data = daneO)
+## 
+## $Receptory.progesteronowe
+##                  diff       lwr       upr     p adj
+## (+)-(-)     0.1282776 -0.781781 1.0383361 0.9826873
+## (++)-(-)   -0.3987131 -1.186847 0.3894207 0.5494245
+## (+++)-(-)  -0.7396100 -1.681610 0.2023901 0.1756259
+## (++)-(+)   -0.5269907 -1.386915 0.3329338 0.3809265
+## (+++)-(+)  -0.8678876 -1.870723 0.1349481 0.1138290
+## (+++)-(++) -0.3408969 -1.234557 0.5527629 0.7501169</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">TukeyHSD</span>(model))</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="python-code-5" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</a>
+<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="im">from</span> statsmodels.stats.multicomp <span class="im">import</span> pairwise_tukeyhsd</a>
+<a class="sourceLine" id="cb38-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb38-8" data-line-number="8">daneO <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneO.csv&quot;</span>,sep<span class="op">=</span><span class="st">&quot;;&quot;</span>,header<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb38-9" data-line-number="9">daneO <span class="op">=</span> daneO.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39;.&#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb38-10" data-line-number="10">daneO[<span class="st">&#39;noweVEGF&#39;</span>] <span class="op">=</span> np.log(daneO[<span class="st">&#39;VEGF&#39;</span>])</a>
+<a class="sourceLine" id="cb38-11" data-line-number="11">        </a>
+<a class="sourceLine" id="cb38-12" data-line-number="12">model1 <span class="op">=</span> smf.ols(<span class="st">&#39;Wiek ~ Niepowodzenia&#39;</span>, data<span class="op">=</span>daneO, missing<span class="op">=</span><span class="st">&#39;drop&#39;</span>).fit()</a>
+<a class="sourceLine" id="cb38-13" data-line-number="13">model2 <span class="op">=</span> smf.ols(<span class="st">&#39;Okres_bez_wznowy ~ Niepowodzenia&#39;</span>, data<span class="op">=</span>daneO, missing<span class="op">=</span><span class="st">&#39;drop&#39;</span>).fit()</a>
+<a class="sourceLine" id="cb38-14" data-line-number="14">model3 <span class="op">=</span> smf.ols(<span class="st">&#39;noweVEGF ~ Niepowodzenia&#39;</span>, data<span class="op">=</span>daneO, missing<span class="op">=</span><span class="st">&#39;drop&#39;</span>).fit()</a>
+<a class="sourceLine" id="cb38-15" data-line-number="15"><span class="bu">print</span>(model1.summary(),<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>,model2.summary(),<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>,model3.summary(),<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</a>
+<a class="sourceLine" id="cb38-16" data-line-number="16"><span class="bu">print</span>(pd.DataFrame({<span class="st">&#39;Wiek&#39;</span>:[model1.pvalues[<span class="dv">1</span>]], <span class="st">&#39;Okres_bez_wznowy&#39;</span>:[model2.pvalues[<span class="dv">1</span>]], <span class="st">&#39;noweVEGF&#39;</span>:[model3.pvalues[<span class="dv">1</span>]] }),<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</a>
+<a class="sourceLine" id="cb38-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb38-18" data-line-number="18">model <span class="op">=</span> smf.ols(<span class="st">&#39;noweVEGF ~ Receptory_progesteronowe&#39;</span>, data<span class="op">=</span>daneO, missing<span class="op">=</span><span class="st">&#39;drop&#39;</span>).fit()</a>
+<a class="sourceLine" id="cb38-19" data-line-number="19">aov_table <span class="op">=</span> sm.stats.anova_lm(model,typ<span class="op">=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb38-20" data-line-number="20"><span class="bu">print</span>(aov_table,<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</a>
+<a class="sourceLine" id="cb38-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb38-22" data-line-number="22">df <span class="op">=</span> daneO.dropna()</a>
+<a class="sourceLine" id="cb38-23" data-line-number="23">tukey <span class="op">=</span> pairwise_tukeyhsd(df[<span class="st">&#39;noweVEGF&#39;</span>], df[<span class="st">&#39;Receptory_progesteronowe&#39;</span>],alpha<span class="op">=</span><span class="fl">0.05</span>)</a>
+<a class="sourceLine" id="cb38-24" data-line-number="24"><span class="bu">print</span>(tukey)</a>
+<a class="sourceLine" id="cb38-25" data-line-number="25">  </a>
+<a class="sourceLine" id="cb38-26" data-line-number="26">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb38-27" data-line-number="27">ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb38-28" data-line-number="28">tukey.plot_simultaneous(comparison_name<span class="op">=</span><span class="st">&#39;(+++)&#39;</span>,ax<span class="op">=</span>ax1)</a>
+<a class="sourceLine" id="cb38-29" data-line-number="29">plt.tight_layout()</a>
+<a class="sourceLine" id="cb38-30" data-line-number="30">plt.savefig(<span class="st">&#39;z36.png&#39;</span>)</a></code></pre></div>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:                   Wiek   R-squared:                       0.021
+## Model:                            OLS   Adj. R-squared:                  0.011
+## Method:                 Least Squares   F-statistic:                     2.027
+## Date:                Sat, 07 Sep 2019   Prob (F-statistic):              0.158
+## Time:                        16:36:16   Log-Likelihood:                -313.87
+## No. Observations:                  97   AIC:                             631.7
+## Df Residuals:                      95   BIC:                             636.9
+## Df Model:                           1                                         
+## Covariance Type:            nonrobust                                         
+## ===========================================================================================
+##                               coef    std err          t      P&gt;|t|      [0.025      0.975]
+## -------------------------------------------------------------------------------------------
+## Intercept                  45.8690      0.678     67.620      0.000      44.522      47.216
+## Niepowodzenia[T.wznowa]    -2.6383      1.853     -1.424      0.158      -6.317       1.040
+## ==============================================================================
+## Omnibus:                        9.887   Durbin-Watson:                   0.044
+## Prob(Omnibus):                  0.007   Jarque-Bera (JB):               10.037
+## Skew:                          -0.773   Prob(JB):                      0.00662
+## Kurtosis:                       3.310   Cond. No.                         2.99
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified. 
+##                              OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:       Okres_bez_wznowy   R-squared:                       0.044
+## Model:                            OLS   Adj. R-squared:                  0.034
+## Method:                 Least Squares   F-statistic:                     4.323
+## Date:                Sat, 07 Sep 2019   Prob (F-statistic):             0.0403
+## Time:                        16:36:16   Log-Likelihood:                -349.96
+## No. Observations:                  96   AIC:                             703.9
+## Df Residuals:                      94   BIC:                             709.0
+## Df Model:                           1                                         
+## Covariance Type:            nonrobust                                         
+## ===========================================================================================
+##                               coef    std err          t      P&gt;|t|      [0.025      0.975]
+## -------------------------------------------------------------------------------------------
+## Intercept                  38.1928      1.028     37.155      0.000      36.152      40.234
+## Niepowodzenia[T.wznowa]    -5.8082      2.793     -2.079      0.040     -11.354      -0.262
+## ==============================================================================
+## Omnibus:                        3.222   Durbin-Watson:                   1.955
+## Prob(Omnibus):                  0.200   Jarque-Bera (JB):                2.457
+## Skew:                          -0.247   Prob(JB):                        0.293
+## Kurtosis:                       2.391   Cond. No.                         2.98
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified. 
+##                              OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:               noweVEGF   R-squared:                       0.128
+## Model:                            OLS   Adj. R-squared:                  0.119
+## Method:                 Least Squares   F-statistic:                     13.93
+## Date:                Sat, 07 Sep 2019   Prob (F-statistic):           0.000323
+## Time:                        16:36:16   Log-Likelihood:                -140.08
+## No. Observations:                  97   AIC:                             284.2
+## Df Residuals:                      95   BIC:                             289.3
+## Df Model:                           1                                         
+## Covariance Type:            nonrobust                                         
+## ===========================================================================================
+##                               coef    std err          t      P&gt;|t|      [0.025      0.975]
+## -------------------------------------------------------------------------------------------
+## Intercept                   7.1223      0.113     62.995      0.000       6.898       7.347
+## Niepowodzenia[T.wznowa]     1.1528      0.309      3.733      0.000       0.540       1.766
+## ==============================================================================
+## Omnibus:                        0.062   Durbin-Watson:                   2.070
+## Prob(Omnibus):                  0.970   Jarque-Bera (JB):                0.192
+## Skew:                           0.048   Prob(JB):                        0.908
+## Kurtosis:                       2.804   Cond. No.                         2.99
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified. 
+## 
+##        Wiek  Okres_bez_wznowy  noweVEGF
+## 0  0.157766          0.040317  0.000323 
+## 
+##                               sum_sq    df         F    PR(&gt;F)
+## Receptory_progesteronowe    8.618356   3.0  2.314872  0.081492
+## Residual                  106.727094  86.0       NaN       NaN 
+## 
+## Multiple Comparison of Means - Tukey HSD, FWER=0.05
+## ===================================================
+## group1 group2 meandiff p-adj   lower  upper  reject
+## ---------------------------------------------------
+##    (+)   (++)  -0.4723 0.5403 -1.4032 0.4586  False
+##    (+)  (+++)  -0.8883 0.1309 -1.9463 0.1696  False
+##    (+)    (-)  -0.3284 0.8042 -1.3338 0.6771  False
+##   (++)  (+++)   -0.416 0.6146 -1.3273 0.4953  False
+##   (++)    (-)   0.1439    0.9 -0.7058 0.9937  False
+##  (+++)    (-)     0.56 0.4502 -0.4274 1.5473  False
+## ---------------------------------------------------</code></pre>
+<div class="figure" style="text-align: center">
+<img src="z36.png" alt="Wykresy." width="100%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="r-zadanie-3.7" class="section level1 tabset">
+<h1>R Zadanie 3.7</h1>
+<p>Wykonaj model regresji liniowej dla zmiennych cisnienie.skurczowe i wiek ze zbioru danych <code>daneSoc</code>.</p>
+<div id="r-code-6" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">daneSoc &lt;-<span class="st"> </span>Przewodnik<span class="op">::</span>daneSoc</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="kw">summary</span>(<span class="kw">lm</span>(cisnienie.skurczowe<span class="op">~</span>wiek, <span class="dt">data =</span> daneSoc))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = cisnienie.skurczowe ~ wiek, data = daneSoc)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -43.328 -10.776   0.513  10.848  42.017 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 138.30535    3.61690  38.239   &lt;2e-16 ***
+## wiek         -0.03138    0.07981  -0.393    0.695    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.75 on 202 degrees of freedom
+## Multiple R-squared:  0.0007647,  Adjusted R-squared:  -0.004182 
+## F-statistic: 0.1546 on 1 and 202 DF,  p-value: 0.6946</code></pre>
+</div>
+<div id="python-code-6" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb42-4" data-line-number="4">daneSoc <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneSoc.csv&quot;</span>, sep<span class="op">=</span><span class="st">&quot;;&quot;</span>)</a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">daneSoc <span class="op">=</span> daneSoc.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39; &#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb42-6" data-line-number="6">        </a>
+<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="bu">print</span>(smf.ols(<span class="st">&#39;cisnienie_skurczowe~wiek&#39;</span>, data<span class="op">=</span>daneSoc, missing<span class="op">=</span><span class="st">&#39;drop&#39;</span>).fit().summary())</a></code></pre></div>
+<pre><code>##                              OLS Regression Results                            
+## ===============================================================================
+## Dep. Variable:     cisnienie_skurczowe   R-squared:                       0.001
+## Model:                             OLS   Adj. R-squared:                 -0.004
+## Method:                  Least Squares   F-statistic:                    0.1546
+## Date:                 Sat, 07 Sep 2019   Prob (F-statistic):              0.695
+## Time:                         20:19:41   Log-Likelihood:                -850.80
+## No. Observations:                  204   AIC:                             1706.
+## Df Residuals:                      202   BIC:                             1712.
+## Df Model:                            1                                         
+## Covariance Type:             nonrobust                                         
+## ==============================================================================
+##                  coef    std err          t      P&gt;|t|      [0.025      0.975]
+## ------------------------------------------------------------------------------
+## Intercept    138.3053      3.617     38.239      0.000     131.174     145.437
+## wiek          -0.0314      0.080     -0.393      0.695      -0.189       0.126
+## ==============================================================================
+## Omnibus:                        0.480   Durbin-Watson:                   1.828
+## Prob(Omnibus):                  0.787   Jarque-Bera (JB):                0.606
+## Skew:                          -0.098   Prob(JB):                        0.739
+## Kurtosis:                       2.819   Cond. No.                         149.
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+<div id="r-zadanie-3.8" class="section level1 tabset">
+<h1>R Zadanie 3.8</h1>
+<p>Odczytaj ramkę danych z zadania 1.13. Następnie wykonaj model regresji dla zmiennej <code>Kreatynina.1</code>, za zmienne zależne wybierz <code>Kreatynina.7</code> i/lub <code>Wiek</code>.</p>
+<p>Wyznacz dla tych zmiennych model regresji liniowej, oceń które zmienne są w istotnej statystycznie zależności, a następnie przedstaw graficznie zależność pomiędzy tymi zmiennymi.</p>
+<div id="r-code-7" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">lm</span>(Kreatynina<span class="fl">.7</span><span class="op">~</span>Kreatynina<span class="fl">.1</span><span class="op">+</span>Wiek, <span class="dt">data=</span>daneBT))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Kreatynina.7 ~ Kreatynina.1 + Wiek, data = daneBT)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.8428 -1.0024 -0.3921  0.6221  5.6952 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)   2.87242    2.33680   1.229  0.23259   
+## Kreatynina.1  0.59609    0.18892   3.155  0.00477 **
+## Wiek         -0.06498    0.04033  -1.611  0.12209   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.102 on 21 degrees of freedom
+## Multiple R-squared:  0.3614, Adjusted R-squared:  0.3006 
+## F-statistic: 5.943 on 2 and 21 DF,  p-value: 0.00901</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">sp</span>(Kreatynina<span class="fl">.7</span><span class="op">~</span>Kreatynina<span class="fl">.1</span>, <span class="dt">data=</span>daneBT)</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">sp</span>(Kreatynina<span class="fl">.7</span><span class="op">~</span>Wiek, <span class="dt">data=</span>daneBT)</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
+</div>
+<div id="python-code-7" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</a>
+<a class="sourceLine" id="cb48-5" data-line-number="5">lowess <span class="op">=</span> sm.nonparametric.lowess</a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7">daneBT <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneBioTech.csv&quot;</span>,sep<span class="op">=</span><span class="st">&#39;;&#39;</span>,decimal<span class="op">=</span><span class="st">&#39;,&#39;</span>, header<span class="op">=</span><span class="dv">0</span>, encoding<span class="op">=</span><span class="st">&#39;iso8859_2&#39;</span>)</a>
+<a class="sourceLine" id="cb48-8" data-line-number="8">daneBT <span class="op">=</span> daneBT.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39; &#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb48-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb48-10" data-line-number="10"><span class="bu">print</span>(smf.ols(<span class="st">&#39;Kreatynina_7~Kreatynina_1+Wiek_&#39;</span>, data<span class="op">=</span>daneBT, missing<span class="op">=</span><span class="st">&#39;drop&#39;</span>).fit().summary())</a>
+<a class="sourceLine" id="cb48-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb48-12" data-line-number="12">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb48-13" data-line-number="13">grid <span class="op">=</span> plt.GridSpec(<span class="dv">4</span>, <span class="dv">4</span>, hspace<span class="op">=</span><span class="fl">0.2</span>, wspace<span class="op">=</span><span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb48-14" data-line-number="14">main_ax <span class="op">=</span> fig.add_subplot(grid[:<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>:])</a>
+<a class="sourceLine" id="cb48-15" data-line-number="15">y_b <span class="op">=</span> fig.add_subplot(grid[:<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>], xticklabels<span class="op">=</span>[], sharey<span class="op">=</span>main_ax)</a>
+<a class="sourceLine" id="cb48-16" data-line-number="16">x_b <span class="op">=</span> fig.add_subplot(grid[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>:], yticklabels<span class="op">=</span>[], sharex<span class="op">=</span>main_ax)</a>
+<a class="sourceLine" id="cb48-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb48-18" data-line-number="18">x <span class="op">=</span> daneBT[<span class="st">&#39;Kreatynina_1&#39;</span>]<span class="op">;</span> y <span class="op">=</span> daneBT[<span class="st">&#39;Kreatynina_7&#39;</span>]</a>
+<a class="sourceLine" id="cb48-19" data-line-number="19">w <span class="op">=</span> lowess(y,x, frac<span class="op">=</span><span class="fl">2.</span><span class="op">/</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb48-20" data-line-number="20">main_ax.plot(x, y, <span class="st">&#39;ok&#39;</span>, markersize<span class="op">=</span><span class="dv">5</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb48-21" data-line-number="21">main_ax.plot(w[:,<span class="dv">0</span>],w[:,<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb48-22" data-line-number="22">main_ax.xaxis.tick_top()</a>
+<a class="sourceLine" id="cb48-23" data-line-number="23">main_ax.yaxis.tick_right()</a>
+<a class="sourceLine" id="cb48-24" data-line-number="24">main_ax.set_xlabel(<span class="st">&#39;Kreatynina_1&#39;</span>)</a>
+<a class="sourceLine" id="cb48-25" data-line-number="25">main_ax.set_ylabel(<span class="st">&#39;Kreatynina_7&#39;</span>)</a>
+<a class="sourceLine" id="cb48-26" data-line-number="26">x_b.boxplot(x,vert<span class="op">=</span><span class="va">False</span>,widths <span class="op">=</span> <span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb48-27" data-line-number="27">x_b.axis(<span class="st">&#39;off&#39;</span>)</a>
+<a class="sourceLine" id="cb48-28" data-line-number="28">y_b.boxplot(y,widths <span class="op">=</span> <span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb48-29" data-line-number="29">y_b.axis(<span class="st">&#39;off&#39;</span>)</a>
+<a class="sourceLine" id="cb48-30" data-line-number="30">fig.subplots_adjust(bottom <span class="op">=</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb48-31" data-line-number="31">fig.subplots_adjust(left <span class="op">=</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb48-32" data-line-number="32">plt.savefig(<span class="st">&#39;z38a.png&#39;</span>)</a>
+<a class="sourceLine" id="cb48-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb48-34" data-line-number="34">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb48-35" data-line-number="35">grid <span class="op">=</span> plt.GridSpec(<span class="dv">4</span>, <span class="dv">4</span>, hspace<span class="op">=</span><span class="fl">0.2</span>, wspace<span class="op">=</span><span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb48-36" data-line-number="36">main_ax <span class="op">=</span> fig.add_subplot(grid[:<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>:])</a>
+<a class="sourceLine" id="cb48-37" data-line-number="37">y_b <span class="op">=</span> fig.add_subplot(grid[:<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>], xticklabels<span class="op">=</span>[], sharey<span class="op">=</span>main_ax)</a>
+<a class="sourceLine" id="cb48-38" data-line-number="38">x_b <span class="op">=</span> fig.add_subplot(grid[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>:], yticklabels<span class="op">=</span>[], sharex<span class="op">=</span>main_ax)</a>
+<a class="sourceLine" id="cb48-39" data-line-number="39">  </a>
+<a class="sourceLine" id="cb48-40" data-line-number="40">x <span class="op">=</span> daneBT[<span class="st">&#39;Wiek_&#39;</span>]<span class="op">;</span> y <span class="op">=</span> daneBT[<span class="st">&#39;Kreatynina_7&#39;</span>]</a>
+<a class="sourceLine" id="cb48-41" data-line-number="41">w <span class="op">=</span> lowess(y,x, frac<span class="op">=</span><span class="fl">2.</span><span class="op">/</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb48-42" data-line-number="42">main_ax.plot(x, y, <span class="st">&#39;ok&#39;</span>, markersize<span class="op">=</span><span class="dv">5</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb48-43" data-line-number="43">main_ax.plot(w[:,<span class="dv">0</span>],w[:,<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb48-44" data-line-number="44">main_ax.xaxis.tick_top()</a>
+<a class="sourceLine" id="cb48-45" data-line-number="45">main_ax.yaxis.tick_right()</a>
+<a class="sourceLine" id="cb48-46" data-line-number="46">main_ax.set_xlabel(<span class="st">&#39;Wiek&#39;</span>)</a>
+<a class="sourceLine" id="cb48-47" data-line-number="47">main_ax.set_ylabel(<span class="st">&#39;Kreatynina_7&#39;</span>)</a>
+<a class="sourceLine" id="cb48-48" data-line-number="48">x_b.boxplot(x,vert<span class="op">=</span><span class="va">False</span>,widths <span class="op">=</span> <span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb48-49" data-line-number="49">x_b.axis(<span class="st">&#39;off&#39;</span>)</a>
+<a class="sourceLine" id="cb48-50" data-line-number="50">y_b.boxplot(y,widths <span class="op">=</span> <span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb48-51" data-line-number="51">y_b.axis(<span class="st">&#39;off&#39;</span>)</a>
+<a class="sourceLine" id="cb48-52" data-line-number="52">fig.subplots_adjust(bottom <span class="op">=</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb48-53" data-line-number="53">fig.subplots_adjust(left <span class="op">=</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb48-54" data-line-number="54">plt.savefig(<span class="st">&#39;z38b.png&#39;</span>)</a></code></pre></div>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:           Kreatynina_7   R-squared:                       0.361
+## Model:                            OLS   Adj. R-squared:                  0.301
+## Method:                 Least Squares   F-statistic:                     5.943
+## Date:                Sun, 08 Sep 2019   Prob (F-statistic):            0.00901
+## Time:                        21:19:44   Log-Likelihood:                -50.280
+## No. Observations:                  24   AIC:                             106.6
+## Df Residuals:                      21   BIC:                             110.1
+## Df Model:                           2                                         
+## Covariance Type:            nonrobust                                         
+## ================================================================================
+##                    coef    std err          t      P&gt;|t|      [0.025      0.975]
+## --------------------------------------------------------------------------------
+## Intercept        2.8724      2.337      1.229      0.233      -1.987       7.732
+## Kreatynina_1     0.5961      0.189      3.155      0.005       0.203       0.989
+## Wiek_           -0.0650      0.040     -1.611      0.122      -0.149       0.019
+## ==============================================================================
+## Omnibus:                        6.891   Durbin-Watson:                   2.015
+## Prob(Omnibus):                  0.032   Jarque-Bera (JB):                4.738
+## Skew:                           0.870   Prob(JB):                       0.0936
+## Kurtosis:                       4.308   Cond. No.                         284.
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+<div class="figure" style="text-align: center">
+<img src="z38a.png" alt="Wykresy." width="60%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<img src="z38b.png" alt="Wykresy." width="60%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="r-zadanie-3.9" class="section level1 tabset">
+<h1>R Zadanie 3.9</h1>
+<p>Wykorzystując wybrany test statystyczny sprawdź, która ze zmiennych ilościowych z ramki danych <code>daneO</code> ma rozkład istotnie różny od normalnego.</p>
+<div id="r-code-8" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">library</span>(nortest)</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="kw">sf.test</span>(daneO<span class="op">$</span>Wiek)</a></code></pre></div>
+<pre><code>## 
+##  Shapiro-Francia normality test
+## 
+## data:  daneO$Wiek
+## W = 0.94523, p-value = 0.0009068</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">sf.test</span>(daneO<span class="op">$</span>Okres.bez.wznowy)</a></code></pre></div>
+<pre><code>## 
+##  Shapiro-Francia normality test
+## 
+## data:  daneO$Okres.bez.wznowy
+## W = 0.97905, p-value = 0.114</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">sf.test</span>(daneO<span class="op">$</span>VEGF)</a></code></pre></div>
+<pre><code>## 
+##  Shapiro-Francia normality test
+## 
+## data:  daneO$VEGF
+## W = 0.59981, p-value = 9.471e-13</code></pre>
+</div>
+<div id="python-code-8" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="im">import</span> scipy.stats <span class="im">as</span> stats</a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb56-4" data-line-number="4">daneO <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneO.csv&quot;</span>,sep<span class="op">=</span><span class="st">&quot;;&quot;</span>,header<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb56-5" data-line-number="5">daneO <span class="op">=</span> daneO.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39;.&#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb56-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb56-7" data-line-number="7"><span class="bu">print</span>(stats.shapiro(daneO[<span class="st">&#39;Wiek&#39;</span>]))</a>
+<a class="sourceLine" id="cb56-8" data-line-number="8"><span class="bu">print</span>(stats.shapiro(daneO[<span class="st">&#39;Okres_bez_wznowy&#39;</span>].dropna()))</a>
+<a class="sourceLine" id="cb56-9" data-line-number="9"><span class="bu">print</span>(stats.shapiro(daneO[<span class="st">&#39;VEGF&#39;</span>]))</a></code></pre></div>
+<pre><code>## (0.9425363540649414, 0.00034700013929978013)
+## (0.976333498954773, 0.07965163141489029)
+## (0.6084718704223633, 1.0720493672747734e-14)</code></pre>
+</div>
+</div>
+<div id="rr-zadanie-3.10" class="section level1 tabset">
+<h1>RR Zadanie 3.10</h1>
+<p>Wyznacz moc wybranego testu normalności jako funkcję poziomu istotności dla alternatywy w postaci rozkładu jednostajnego i dla liczebności próby 50.</p>
+<div id="r-code-9" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">N =<span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">n =<span class="st"> </span><span class="dv">50</span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3">pwart =<span class="st"> </span><span class="kw">numeric</span>(N)</a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N) {</a>
+<a class="sourceLine" id="cb58-5" data-line-number="5">    pwart[i] =<span class="st"> </span>nortest<span class="op">::</span><span class="kw">sf.test</span>(<span class="kw">runif</span>(n))<span class="op">$</span>p.value</a>
+<a class="sourceLine" id="cb58-6" data-line-number="6">}   </a>
+<a class="sourceLine" id="cb58-7" data-line-number="7">  </a>
+<a class="sourceLine" id="cb58-8" data-line-number="8">alfy =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</a>
+<a class="sourceLine" id="cb58-9" data-line-number="9">moce =<span class="st"> </span><span class="kw">sapply</span>(alfy, <span class="cf">function</span>(x) <span class="kw">mean</span>(pwart<span class="op">&lt;</span>x))</a>
+<a class="sourceLine" id="cb58-10" data-line-number="10"><span class="kw">plot</span>(alfy, moce, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="python-code-9" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="im">import</span> scipy.stats <span class="im">as</span> stats</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb59-4" data-line-number="4">N <span class="op">=</span> <span class="dv">1000</span></a>
+<a class="sourceLine" id="cb59-5" data-line-number="5">n <span class="op">=</span> <span class="dv">50</span></a>
+<a class="sourceLine" id="cb59-6" data-line-number="6">pwart <span class="op">=</span> [stats.shapiro(stats.uniform.rvs(size<span class="op">=</span>n))[<span class="dv">1</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N) ]</a>
+<a class="sourceLine" id="cb59-7" data-line-number="7">alfy <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</a>
+<a class="sourceLine" id="cb59-8" data-line-number="8">moce <span class="op">=</span> [np.mean(np.less(pwart,[i])) <span class="cf">for</span> i <span class="kw">in</span> alfy]</a>
+<a class="sourceLine" id="cb59-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb59-10" data-line-number="10"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb59-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb59-12" data-line-number="12">fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</a>
+<a class="sourceLine" id="cb59-13" data-line-number="13">plt.plot(alfy,moce)</a>
+<a class="sourceLine" id="cb59-14" data-line-number="14">plt.xlabel(<span class="st">&#39;alfy&#39;</span>)</a>
+<a class="sourceLine" id="cb59-15" data-line-number="15">plt.ylabel(<span class="st">&#39;moce&#39;</span>)</a>
+<a class="sourceLine" id="cb59-16" data-line-number="16">plt.tight_layout()</a>
+<a class="sourceLine" id="cb59-17" data-line-number="17">plt.savefig(<span class="st">&#39;R3_10.png&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="R3_10.png" alt="Wykresy." width="80%" />
+<p class="caption">
+Wykresy.
+</p>
+</div>
+</div>
+</div>
+<div id="r-zadanie-3.11" class="section level1 tabset">
+<h1>R Zadanie 3.11</h1>
+<p>Sprawdź, które zmienne ilościowe z ramki danych daneO są ze sobą istotnie statystycznie skorelowane.</p>
+<div id="r-code-10" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">cor.test</span>(daneO<span class="op">$</span>Wiek,daneO<span class="op">$</span>Okres.bez.wznowy)</a></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  daneO$Wiek and daneO$Okres.bez.wznowy
+## t = 1.1713, df = 94, p-value = 0.2444
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.08253032  0.31290198
+## sample estimates:
+##       cor 
+## 0.1199402</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="kw">cor.test</span>(daneO<span class="op">$</span>Wiek,daneO<span class="op">$</span>VEGF)</a></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  daneO$Wiek and daneO$VEGF
+## t = -1.058, df = 95, p-value = 0.2927
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.30088630  0.09354158
+## sample estimates:
+##        cor 
+## -0.1079171</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="kw">cor.test</span>(daneO<span class="op">$</span>Okres.bez.wznowy,daneO<span class="op">$</span>VEGF)</a></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  daneO$Okres.bez.wznowy and daneO$VEGF
+## t = -1.416, df = 94, p-value = 0.1601
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.33529190  0.05763505
+## sample estimates:
+##        cor 
+## -0.1445208</code></pre>
+</div>
+<div id="python-code-10" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="im">import</span> scipy.stats <span class="im">as</span> stats</a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb66-4" data-line-number="4">daneO <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneO.csv&quot;</span>,sep<span class="op">=</span><span class="st">&quot;;&quot;</span>,header<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb66-5" data-line-number="5">daneO <span class="op">=</span> daneO.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39;.&#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb66-6" data-line-number="6">df1 <span class="op">=</span> daneO[[<span class="st">&#39;Wiek&#39;</span>,<span class="st">&#39;Okres_bez_wznowy&#39;</span>]].dropna()</a>
+<a class="sourceLine" id="cb66-7" data-line-number="7">df2 <span class="op">=</span> daneO[[<span class="st">&#39;Wiek&#39;</span>,<span class="st">&#39;VEGF&#39;</span>]].dropna()</a>
+<a class="sourceLine" id="cb66-8" data-line-number="8">df3 <span class="op">=</span> daneO[[<span class="st">&#39;Okres_bez_wznowy&#39;</span>,<span class="st">&#39;VEGF&#39;</span>]].dropna()</a>
+<a class="sourceLine" id="cb66-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb66-10" data-line-number="10"><span class="bu">print</span>(stats.pearsonr(df1[<span class="st">&#39;Wiek&#39;</span>],df1[<span class="st">&#39;Okres_bez_wznowy&#39;</span>]))</a>
+<a class="sourceLine" id="cb66-11" data-line-number="11"><span class="bu">print</span>(stats.pearsonr(df2[<span class="st">&#39;Wiek&#39;</span>],df2[<span class="st">&#39;VEGF&#39;</span>]))</a>
+<a class="sourceLine" id="cb66-12" data-line-number="12"><span class="bu">print</span>(stats.pearsonr(df3[<span class="st">&#39;Okres_bez_wznowy&#39;</span>],df3[<span class="st">&#39;VEGF&#39;</span>]))</a></code></pre></div>
+<pre><code>## (0.11994017124783223, 0.24443124390704238)
+## (-0.10791710956018545, 0.2927270135444388)
+## (-0.14452083549318565, 0.1600667106417798)</code></pre>
+</div>
+</div>
+<div id="r-zadanie-3.12" class="section level1 tabset">
+<h1>R Zadanie 3.12</h1>
+<p>W zbiorze danych mieszkania podziel zmienną cena na zmienną jakościową opisującą, czy cena jest wyższa od 175000, a zmienną powierzchnia podziel na zmienną jakościową opisującą, czy powierzchnia jest większa od <span class="math inline">\(45m^2\)</span>. Następnie wyznacz poznane współczynniki zgodności dla tych dwóch zmiennych jakościowych.</p>
+<div id="r-code-11" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">mieszkania &lt;-<span class="st"> </span>Przewodnik<span class="op">::</span>mieszkania</a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">nowaCena =<span class="st"> </span><span class="kw">cut</span>(mieszkania<span class="op">$</span>cena, <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">175000</span>,<span class="ot">Inf</span>), <span class="kw">c</span>(<span class="st">&quot;niska&quot;</span>,<span class="st">&quot;wysoka&quot;</span>))</a>
+<a class="sourceLine" id="cb68-3" data-line-number="3">nowaPowierzchnia =<span class="st"> </span><span class="kw">cut</span>(mieszkania<span class="op">$</span>powierzchnia, <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">45</span>,<span class="ot">Inf</span>), <span class="kw">c</span>(<span class="st">&quot;mala&quot;</span>,<span class="st">&quot;duza&quot;</span>))</a>
+<a class="sourceLine" id="cb68-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb68-5" data-line-number="5"><span class="kw">library</span>(irr)</a></code></pre></div>
+<pre><code>## Loading required package: lpSolve</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">kappa2</span>(<span class="kw">cbind</span>(nowaCena, nowaPowierzchnia))</a></code></pre></div>
+<pre><code>##  Cohen&#39;s Kappa for 2 Raters (Weights: unweighted)
+## 
+##  Subjects = 200 
+##    Raters = 2 
+##     Kappa = 0.79 
+## 
+##         z = 11.2 
+##   p-value = 0</code></pre>
+</div>
+<div id="python-code-11" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="im">from</span> statsmodels.stats.inter_rater <span class="im">import</span> cohens_kappa</a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb72-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb72-5" data-line-number="5">mieszkania <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneMieszkania.csv&quot;</span>,sep<span class="op">=</span><span class="st">&#39;;&#39;</span>)</a>
+<a class="sourceLine" id="cb72-6" data-line-number="6">nowaCena <span class="op">=</span> pd.cut(mieszkania[<span class="st">&#39;cena&#39;</span>],[<span class="dv">0</span>,<span class="dv">175000</span>,np.inf],labels<span class="op">=</span>[<span class="st">&#39;niska&#39;</span>,<span class="st">&#39;wysoka&#39;</span>],precision<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb72-7" data-line-number="7">nowaPowierzchnia <span class="op">=</span> pd.cut(mieszkania[<span class="st">&#39;powierzchnia&#39;</span>],[<span class="dv">0</span>,<span class="dv">45</span>,np.inf],labels<span class="op">=</span>[<span class="st">&#39;mala&#39;</span>,<span class="st">&#39;duza&#39;</span>],precision<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb72-8" data-line-number="8"><span class="bu">print</span>(cohens_kappa(pd.crosstab(index<span class="op">=</span>nowaCena, columns<span class="op">=</span>nowaPowierzchnia)))</a></code></pre></div>
+<pre><code>##                   Simple Kappa Coefficient
+##               --------------------------------
+##               Kappa                     0.7900
+##               ASE                       0.0433
+##               95% Lower Conf Limit      0.7051
+##               95% Upper Conf Limit      0.8749
+## 
+##                  Test of H0: Simple Kappa = 0
+## 
+##               ASE under H0              0.0706
+##               Z                         11.1863
+##               One-sided Pr &gt;  Z         0.0000
+##               Two-sided Pr &gt; |Z|        0.0000</code></pre>
+</div>
+</div>
+<div id="rr-zadanie-3.13" class="section level1 tabset">
+<h1>RR Zadanie 3.13</h1>
+<p>Napisz funkcję, która dla danego wektora liczb (zakładamy, że są to liczby dodatnie) sprawdza, czy po zastosowaniu transformacji logarytmicznej, odwrotnej lub pierwiastkowej dane nie są “bardziej normalne”. Jako wynik funkcja przekazuje wektor danych przekształconych albo nie (tak by uzyskać wektor najbardziej zbliżony do rozkładu normalnego) oraz informację, czy i jaką transformację zastosowano. Do badania odległości do rozkładu normalnego wykorzystać można odległość pomiędzy dystrybuantami. Uwaga: porównujemy z rodziną rozkładów normalnych a nie jednym rozkładem!</p>
+<div id="r-code-12" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">inteligentnaTransformacja &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb74-2" data-line-number="2">  <span class="kw">require</span>(nortest)</a>
+<a class="sourceLine" id="cb74-3" data-line-number="3">  wynik =<span class="st"> </span><span class="kw">list</span>(<span class="dt">D =</span> <span class="kw">lillie.test</span>(x)<span class="op">$</span>statistic, <span class="dt">trans=</span><span class="st">&quot;bez zmian&quot;</span>, <span class="dt">x =</span> x)</a>
+<a class="sourceLine" id="cb74-4" data-line-number="4">  nx =<span class="st"> </span><span class="kw">log</span>(x)</a>
+<a class="sourceLine" id="cb74-5" data-line-number="5">  <span class="cf">if</span> (<span class="kw">lillie.test</span>(nx)<span class="op">$</span>statistic <span class="op">&lt;</span><span class="st"> </span>wynik<span class="op">$</span>D) {</a>
+<a class="sourceLine" id="cb74-6" data-line-number="6">     wynik =<span class="st"> </span><span class="kw">list</span>(<span class="dt">D =</span> <span class="kw">lillie.test</span>(nx)<span class="op">$</span>statistic, <span class="dt">trans=</span><span class="st">&quot;log&quot;</span>, <span class="dt">x =</span> nx)</a>
+<a class="sourceLine" id="cb74-7" data-line-number="7">  }</a>
+<a class="sourceLine" id="cb74-8" data-line-number="8">  nx =<span class="st"> </span><span class="kw">sqrt</span>(x)</a>
+<a class="sourceLine" id="cb74-9" data-line-number="9">  <span class="cf">if</span> (<span class="kw">lillie.test</span>(nx)<span class="op">$</span>statistic <span class="op">&lt;</span><span class="st"> </span>wynik<span class="op">$</span>D) {</a>
+<a class="sourceLine" id="cb74-10" data-line-number="10">     wynik =<span class="st"> </span><span class="kw">list</span>(<span class="dt">D =</span> <span class="kw">lillie.test</span>(nx)<span class="op">$</span>statistic, <span class="dt">trans=</span><span class="st">&quot;sqrt&quot;</span>, <span class="dt">x =</span> nx)</a>
+<a class="sourceLine" id="cb74-11" data-line-number="11">  }</a>
+<a class="sourceLine" id="cb74-12" data-line-number="12">  nx =<span class="st"> </span><span class="dv">1</span><span class="op">/</span>x</a>
+<a class="sourceLine" id="cb74-13" data-line-number="13">  <span class="cf">if</span> (<span class="kw">lillie.test</span>(nx)<span class="op">$</span>statistic <span class="op">&lt;</span><span class="st"> </span>wynik<span class="op">$</span>D) {</a>
+<a class="sourceLine" id="cb74-14" data-line-number="14">     wynik =<span class="st"> </span><span class="kw">list</span>(<span class="dt">D =</span> <span class="kw">lillie.test</span>(nx)<span class="op">$</span>statistic, <span class="dt">trans=</span><span class="st">&quot;ivers&quot;</span>, <span class="dt">x =</span> nx)</a>
+<a class="sourceLine" id="cb74-15" data-line-number="15">  }</a>
+<a class="sourceLine" id="cb74-16" data-line-number="16">  wynik</a>
+<a class="sourceLine" id="cb74-17" data-line-number="17">}</a>
+<a class="sourceLine" id="cb74-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb74-19" data-line-number="19"><span class="kw">inteligentnaTransformacja</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">5</span>))</a></code></pre></div>
+<pre><code>## $D
+##          D 
+## 0.06557435 
+## 
+## $trans
+## [1] &quot;bez zmian&quot;
+## 
+## $x
+##   [1] 4.565578 4.318175 4.917427 5.577285 1.417015 4.047155 5.735521
+##   [8] 4.351243 5.852110 5.221988 4.653735 5.383334 5.341229 4.747503
+##  [15] 4.961536 2.595349 5.184420 4.795092 5.815803 4.069511 5.648910
+##  [22] 5.733018 5.509098 4.064623 3.633067 4.587372 4.328461 6.290386
+##  [29] 5.002624 4.457860 5.250542 6.348439 5.743273 6.466114 5.910505
+##  [36] 5.786866 5.529514 4.173414 4.868019 5.810563 5.359470 4.036221
+##  [43] 5.577982 5.788747 6.457072 5.412366 3.126871 4.361299 3.803430
+##  [50] 4.459494 4.705191 5.386204 5.998473 6.112645 4.827934 5.689780
+##  [57] 6.072730 5.618089 3.061268 3.799030 3.972497 6.612829 5.697447
+##  [64] 5.448618 5.003145 3.751567 4.567858 5.220047 3.433674 4.363347
+##  [71] 3.758389 7.572565 6.013525 4.996670 3.516463 6.694572 5.075592
+##  [78] 5.246550 5.025149 5.960306 6.008729 4.836145 5.343044 5.213504
+##  [85] 5.503936 2.412904 4.609991 4.742117 6.858967 5.805095 6.694513
+##  [92] 3.933233 6.292018 3.570829 4.541844 3.581728 4.713894 3.084655
+##  [99] 4.967130 5.670866</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">inteligentnaTransformacja</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">5</span>))</a></code></pre></div>
+<pre><code>## $D
+##          D 
+## 0.04204504 
+## 
+## $trans
+## [1] &quot;log&quot;
+## 
+## $x
+##   [1] -1.7187209 -1.2584754 -1.9168167 -1.8966816 -1.6421399 -1.4619434
+##   [7] -1.6682911 -1.5604142 -1.8749530 -1.5120334 -1.6491543 -2.1747439
+##  [13] -1.5493856 -1.6381848 -1.5019376 -1.4448826 -1.7585575 -1.7338921
+##  [19] -1.6402376 -1.5971326 -1.5271923 -1.3837748 -1.6003709 -1.7998482
+##  [25] -1.8172222 -1.3383094 -1.4277036 -2.0476545 -1.4327159 -1.5814696
+##  [31] -1.2155818 -1.7811978 -1.9845938 -1.6086111 -1.9271963 -1.6100824
+##  [37] -1.4123186 -1.6255640 -1.8078466 -1.6981094 -1.8498234 -1.4840351
+##  [43] -1.4570542 -2.0013664 -1.7951182 -1.7636724 -1.3577397 -1.6217416
+##  [49] -1.5305291 -1.7491480 -1.5670951 -1.3643687 -1.8771075 -1.8536520
+##  [55] -1.2870040 -1.6026026 -1.0811022 -1.5071590 -1.5324587 -1.6475454
+##  [61] -1.4518002 -1.8285182 -1.8917009 -0.8718291 -1.7362322 -1.1270156
+##  [67] -1.4128010 -1.8220370 -1.2772915 -1.5402508 -1.8668272 -1.4041916
+##  [73] -1.6863402 -1.3352732 -1.5075876 -1.6212064 -1.5514043 -1.9183022
+##  [79] -1.1042966 -1.4580470 -1.9315529 -1.1191978 -1.3740839 -1.6374544
+##  [85] -1.5700216 -1.6489179 -1.8681265 -1.6160132 -1.7683719 -1.7266633
+##  [91] -1.6039865 -1.7232656 -1.4065537 -1.5844962 -1.4929598 -1.4366524
+##  [97] -1.1339116 -1.7472100 -1.8244068 -1.7979060</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">inteligentnaTransformacja</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">5</span>)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## $D
+##          D 
+## 0.05129553 
+## 
+## $trans
+## [1] &quot;sqrt&quot;
+## 
+## $x
+##   [1] 4.952717 3.830199 5.231808 5.236034 5.237718 5.767348 6.223222
+##   [8] 4.984886 4.886694 4.954835 3.418727 6.871067 6.172900 4.520408
+##  [15] 5.981362 4.268845 5.501887 4.983633 4.680708 5.630011 4.838413
+##  [22] 5.744344 5.031885 5.408069 3.379232 5.114154 4.707706 4.054941
+##  [29] 4.372556 4.795015 4.221128 4.717787 4.225267 3.184325 4.028672
+##  [36] 5.698203 5.309385 6.170554 6.393432 6.232077 5.512664 4.696012
+##  [43] 4.857656 4.283048 3.853027 3.689763 5.551017 6.113066 6.740438
+##  [50] 3.860559 2.887775 4.830842 6.487620 4.371265 6.855373 3.406646
+##  [57] 5.781475 8.465121 4.814720 6.516808 4.126388 5.915636 5.792243
+##  [64] 4.338066 5.000091 5.793339 5.975531 6.502807 4.800547 5.553683
+##  [71] 6.679129 3.005901 5.701064 4.876116 4.757252 6.295156 4.041892
+##  [78] 3.916877 6.156113 6.017579 4.985803 5.163246 4.334567 3.748585
+##  [85] 5.565807 6.755452 5.903643 4.203103 4.815226 3.430315 2.332227
+##  [92] 3.903248 4.318938 6.057018 3.665198 5.245777 5.642013 4.814989
+##  [99] 3.629221 4.708869</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="kw">inteligentnaTransformacja</span>(<span class="kw">exp</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">5</span>)))</a></code></pre></div>
+<pre><code>## $D
+##          D 
+## 0.05362499 
+## 
+## $trans
+## [1] &quot;log&quot;
+## 
+## $x
+##   [1] 5.115086 5.361740 6.686243 5.494081 3.799350 4.610841 3.621044
+##   [8] 4.263121 4.296358 3.969801 6.297458 5.571844 3.462977 5.239101
+##  [15] 4.544160 4.041334 4.911259 4.600121 5.566465 4.648755 5.821458
+##  [22] 6.142043 3.942629 4.962625 5.636900 4.757146 5.016963 5.385422
+##  [29] 4.710657 3.184322 5.913402 3.119934 7.550281 6.759309 7.413748
+##  [36] 5.354602 6.665796 4.202946 6.329028 6.039281 5.336595 5.193417
+##  [43] 4.846192 3.465826 4.116331 4.860925 5.618270 5.419159 4.221224
+##  [50] 5.070060 3.895250 4.906506 5.054340 5.023185 5.018237 4.027311
+##  [57] 3.406623 7.909282 4.210102 4.883102 5.841303 4.380168 3.799541
+##  [64] 5.655911 4.519335 5.937594 5.869420 4.119567 3.550014 6.613088
+##  [71] 3.262716 4.587973 4.562282 5.626700 4.770384 5.519265 4.807089
+##  [78] 5.459111 4.378374 4.503376 5.735534 4.151643 6.024703 5.528530
+##  [85] 4.573913 5.456021 5.784031 4.359680 4.257133 5.893562 5.173331
+##  [92] 3.974610 5.327546 4.241264 6.160321 3.753727 4.592711 5.127217
+##  [99] 4.336277 5.661825</code></pre>
+</div>
+<div id="python-code-12" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb82"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="im">import</span> scipy.stats <span class="im">as</span> stats</a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb82-4" data-line-number="4"><span class="kw">def</span> inteligentnaTransformacja(x):</a>
+<a class="sourceLine" id="cb82-5" data-line-number="5">    <span class="cf">if</span>  stats.anderson(np.log(np.array(x)))[<span class="dv">0</span>] <span class="op">&lt;</span> stats.anderson(np.array(x))[<span class="dv">0</span>]: <span class="op">\</span></a>
+<a class="sourceLine" id="cb82-6" data-line-number="6">        <span class="cf">return</span> { <span class="st">&quot;statystyka&quot;</span>: stats.anderson(np.log(np.array(x)))[<span class="dv">0</span>],<span class="op">\</span></a>
+<a class="sourceLine" id="cb82-7" data-line-number="7">                 <span class="st">&quot;log&quot;</span>: np.log(np.arange(x)) }</a>
+<a class="sourceLine" id="cb82-8" data-line-number="8">    <span class="cf">elif</span> stats.anderson(np.sqrt(np.array(x)))[<span class="dv">0</span>] <span class="op">&lt;</span> stats.anderson(np.array(x))[<span class="dv">0</span>]: <span class="op">\</span></a>
+<a class="sourceLine" id="cb82-9" data-line-number="9">        <span class="cf">return</span> { <span class="st">&quot;statystyka&quot;</span>: stats.anderson(np.sqrt(np.array(x)))[<span class="dv">0</span>],<span class="op">\</span></a>
+<a class="sourceLine" id="cb82-10" data-line-number="10">                 <span class="st">&quot;sqrt&quot;</span>: np.sqrt(np.arange(x)) }</a>
+<a class="sourceLine" id="cb82-11" data-line-number="11">    <span class="cf">elif</span> stats.anderson(<span class="dv">1</span><span class="op">/</span>(np.array(x)))[<span class="dv">0</span>] <span class="op">&lt;</span> stats.anderson(np.array(x))[<span class="dv">0</span>]: <span class="op">\</span></a>
+<a class="sourceLine" id="cb82-12" data-line-number="12">        <span class="cf">return</span> { <span class="st">&quot;statystyka&quot;</span>: stats.anderson(<span class="dv">1</span><span class="op">/</span>(np.array(x)))[<span class="dv">0</span>],<span class="op">\</span></a>
+<a class="sourceLine" id="cb82-13" data-line-number="13">                  <span class="st">&quot;ivers&quot;</span>: <span class="dv">1</span><span class="op">/</span>(np.arange(x)) }</a>
+<a class="sourceLine" id="cb82-14" data-line-number="14">    <span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb82-15" data-line-number="15">        <span class="cf">return</span> { <span class="st">&quot;statystyka&quot;</span>: stats.anderson(np.array(x))[<span class="dv">0</span>],<span class="op">\</span></a>
+<a class="sourceLine" id="cb82-16" data-line-number="16">                 <span class="st">&quot;bez zmian&quot;</span>: x }</a></code></pre></div>
+</div>
+</div>
+<div id="r-zadanie-3.14" class="section level1 tabset">
+<h1>R Zadanie 3.14</h1>
+<p>W zbiorze danych <code>daneO</code> zmienna Receptory.estrogenowe występuje na 4 poziomach, odpowiednio (-), (+), (++), (+++). Wykonaj analizę wariancji dla następujących funkcji kontrastów: porównujący pacjentki bez tych receptorów (grupa (-)) z pozostałymi grupami, porównujący pacjentki z brakiem lub słabą ekspresją tych receptorów (grupy (-) i (+)) z pozostałymi grupami, porównujący pacjentki z bardzo wysoką ekspresją (grupa (+++)) z pozostałymi grupami. Uwaga: te kontrasty nie muszą być ortogonalne.</p>
+<div id="r-code-13" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">(<span class="dt">kontr =</span> <span class="kw">cbind</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">-1</span>, <span class="dv">-1</span>, <span class="dv">-1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-3</span>)))</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    3    1    1
+## [2,]   -1    1    1
+## [3,]   -1   -1    1
+## [4,]   -1   -1   -3</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">lm</span>(noweVEGF<span class="op">~</span>Receptory.estrogenowe, <span class="dt">data=</span>daneO, <span class="dt">contrasts=</span> <span class="kw">list</span>(<span class="dt">Receptory.estrogenowe=</span>kontr)))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = noweVEGF ~ Receptory.estrogenowe, data = daneO, 
+##     contrasts = list(Receptory.estrogenowe = kontr))
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.43126 -0.77419 -0.07176  0.80094  2.52775 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)             7.25633    0.13563  53.500   &lt;2e-16 ***
+## Receptory.estrogenowe1  0.13173    0.07770   1.695   0.0936 .  
+## Receptory.estrogenowe2 -0.11647    0.16997  -0.685   0.4950    
+## Receptory.estrogenowe3 -0.03913    0.11117  -0.352   0.7257    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.138 on 87 degrees of freedom
+##   (6 observations deleted due to missingness)
+## Multiple R-squared:  0.03395,    Adjusted R-squared:  0.0006351 
+## F-statistic: 1.019 on 3 and 87 DF,  p-value: 0.3883</code></pre>
+</div>
+<div id="python-code-13" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb87-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb87-5" data-line-number="5">daneO <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneO.csv&quot;</span>,sep<span class="op">=</span><span class="st">&quot;;&quot;</span>,header<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb87-6" data-line-number="6">daneO <span class="op">=</span> daneO.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39;.&#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb87-7" data-line-number="7">daneO[<span class="st">&#39;noweVEGF&#39;</span>] <span class="op">=</span> np.log(daneO[<span class="st">&#39;VEGF&#39;</span>])</a>
+<a class="sourceLine" id="cb87-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb87-9" data-line-number="9">contrast <span class="op">=</span> [[<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>], [<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>],[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>],[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">3</span>]]</a>
+<a class="sourceLine" id="cb87-10" data-line-number="10">model <span class="op">=</span> smf.ols(<span class="st">&quot;noweVEGF ~ C(Receptory_estrogenowe, contrast)&quot;</span>, data<span class="op">=</span>daneO).fit()</a>
+<a class="sourceLine" id="cb87-11" data-line-number="11"><span class="bu">print</span>(model.summary())</a></code></pre></div>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:               noweVEGF   R-squared:                       0.034
+## Model:                            OLS   Adj. R-squared:                  0.001
+## Method:                 Least Squares   F-statistic:                     1.019
+## Date:                Tue, 10 Sep 2019   Prob (F-statistic):              0.388
+## Time:                        17:53:03   Log-Likelihood:                -138.81
+## No. Observations:                  91   AIC:                             285.6
+## Df Residuals:                      87   BIC:                             295.7
+## Df Model:                           3                                         
+## Covariance Type:            nonrobust                                         
+## ===============================================================================================================
+##                                                   coef    std err          t      P&gt;|t|      [0.025      0.975]
+## ---------------------------------------------------------------------------------------------------------------
+## Intercept                                       7.2563      0.136     53.500      0.000       6.987       7.526
+## C(Receptory_estrogenowe, contrast)[custom0]    -0.0582      0.085     -0.685      0.495      -0.227       0.111
+## C(Receptory_estrogenowe, contrast)[custom1]    -0.0783      0.222     -0.352      0.726      -0.520       0.364
+## C(Receptory_estrogenowe, contrast)[custom2]    -0.0344      0.106     -0.325      0.746      -0.244       0.176
+## ==============================================================================
+## Omnibus:                        1.479   Durbin-Watson:                   2.099
+## Prob(Omnibus):                  0.477   Jarque-Bera (JB):                1.186
+## Skew:                          -0.027   Prob(JB):                        0.553
+## Kurtosis:                       2.443   Cond. No.                         5.09
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+<div id="r-zadanie-3.15" class="section level1 tabset">
+<h1>R Zadanie 3.15</h1>
+<p>Sprawdź, czy w zbiorze danych <code>daneO</code> zmienne <code>Płeć</code> i <code>WIT</code> wpływają na cechę <code>Kreatynina.7</code> w sposób addytywny, poprzez interakcję, czy też nie wpływają w żaden sposób. Zilustruj te zależności graficznie.</p>
+<div id="r-code-14" class="section level2">
+<h2>R code</h2>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">lm</span>(daneBT[,<span class="dv">7</span>]<span class="op">~</span>daneBT[,<span class="dv">2</span>]<span class="op">+</span>daneBT[,<span class="dv">3</span>]))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = daneBT[, 7] ~ daneBT[, 2] + daneBT[, 3])
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.8684 -1.5684 -0.8195  0.5668  5.3316 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)         2.1695     0.9224   2.352   0.0285 *
+## daneBT[, 2]M        2.0989     1.0233   2.051   0.0529 .
+## daneBT[, 3]obecny  -0.1815     1.0509  -0.173   0.8646  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.386 on 21 degrees of freedom
+## Multiple R-squared:  0.177,  Adjusted R-squared:  0.09863 
+## F-statistic: 2.258 on 2 and 21 DF,  p-value: 0.1293</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">lm</span>(daneBT[,<span class="dv">7</span>]<span class="op">~</span>daneBT[,<span class="dv">2</span>]<span class="op">*</span>daneBT[,<span class="dv">3</span>]))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = daneBT[, 7] ~ daneBT[, 2] * daneBT[, 3])
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -2.782 -1.482 -1.010  0.767  5.418 
+## 
+## Coefficients:
+##                                Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)                      2.3600     1.0902   2.165   0.0427 *
+## daneBT[, 2]M                     1.8218     1.3148   1.386   0.1811  
+## daneBT[, 3]obecny               -0.6100     1.6352  -0.373   0.7130  
+## daneBT[, 2]M:daneBT[, 3]obecny   0.7532     2.1679   0.347   0.7319  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.438 on 20 degrees of freedom
+## Multiple R-squared:  0.182,  Adjusted R-squared:  0.05924 
+## F-statistic: 1.483 on 3 and 20 DF,  p-value: 0.2495</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">lm</span>(daneBT[,<span class="dv">7</span>]<span class="op">~</span>daneBT[,<span class="dv">2</span>]<span class="op">:</span>daneBT[,<span class="dv">3</span>]))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = daneBT[, 7] ~ daneBT[, 2]:daneBT[, 3])
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -2.782 -1.482 -1.010  0.767  5.418 
+## 
+## Coefficients: (1 not defined because of singularities)
+##                                Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)                      4.3250     1.2188   3.548  0.00202 **
+## daneBT[, 2]K:daneBT[, 3]brak    -1.9650     1.6352  -1.202  0.24353   
+## daneBT[, 2]M:daneBT[, 3]brak    -0.1432     1.4233  -0.101  0.92087   
+## daneBT[, 2]K:daneBT[, 3]obecny  -2.5750     1.7237  -1.494  0.15082   
+## daneBT[, 2]M:daneBT[, 3]obecny       NA         NA      NA       NA   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.438 on 20 degrees of freedom
+## Multiple R-squared:  0.182,  Adjusted R-squared:  0.05924 
+## F-statistic: 1.483 on 3 and 20 DF,  p-value: 0.2495</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="kw">interaction.plot</span>(daneBT[,<span class="dv">3</span>], daneBT[,<span class="dv">2</span>], daneBT[,<span class="dv">7</span>])</a></code></pre></div>
+<p><img src="R_03_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+<div id="python-code-14" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
+<a class="sourceLine" id="cb96-2" data-line-number="2"><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</a>
+<a class="sourceLine" id="cb96-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb96-4" data-line-number="4">daneBT <span class="op">=</span> pd.read_csv(<span class="st">&quot;http://www.biecek.pl/R/dane/daneBioTech.csv&quot;</span>,sep<span class="op">=</span><span class="st">&#39;;&#39;</span>,decimal<span class="op">=</span><span class="st">&#39;,&#39;</span>, header<span class="op">=</span><span class="dv">0</span>, encoding<span class="op">=</span><span class="st">&#39;iso8859_2&#39;</span>)</a>
+<a class="sourceLine" id="cb96-5" data-line-number="5">daneBT <span class="op">=</span> daneBT.rename(columns<span class="op">=</span><span class="kw">lambda</span> x: x.replace(<span class="st">&#39; &#39;</span>, <span class="st">&#39;_&#39;</span>))</a>
+<a class="sourceLine" id="cb96-6" data-line-number="6">daneBT.columns <span class="op">=</span> daneBT.columns.<span class="bu">str</span>.replace(<span class="st">&#39;Płeć_K-0_M-1&#39;</span>, <span class="st">&#39;Płeć&#39;</span>)</a>
+<a class="sourceLine" id="cb96-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb96-8" data-line-number="8"><span class="bu">print</span>(smf.ols(<span class="st">&#39;Kreatynina_7~C(Płeć)+C(WIT)&#39;</span>, data<span class="op">=</span>daneBT, missing<span class="op">=</span><span class="st">&#39;drop&#39;</span>).fit().summary())</a>
+<a class="sourceLine" id="cb96-9" data-line-number="9"><span class="bu">print</span>(smf.ols(<span class="st">&#39;Kreatynina_7~C(Płeć)*C(WIT)&#39;</span>, data<span class="op">=</span>daneBT, missing<span class="op">=</span><span class="st">&#39;drop&#39;</span>).fit().summary())</a>
+<a class="sourceLine" id="cb96-10" data-line-number="10"><span class="bu">print</span>(smf.ols(<span class="st">&#39;Kreatynina_7~C(Płeć):C(WIT)&#39;</span>, data<span class="op">=</span>daneBT, missing<span class="op">=</span><span class="st">&#39;drop&#39;</span>).fit().summary())</a></code></pre></div>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:           Kreatynina_7   R-squared:                       0.177
+## Model:                            OLS   Adj. R-squared:                  0.099
+## Method:                 Least Squares   F-statistic:                     2.258
+## Date:                Sun, 08 Sep 2019   Prob (F-statistic):              0.129
+## Time:                        22:06:49   Log-Likelihood:                -53.324
+## No. Observations:                  24   AIC:                             112.6
+## Df Residuals:                      21   BIC:                             116.2
+## Df Model:                           2                                         
+## Covariance Type:            nonrobust                                         
+## ====================================================================================
+##                        coef    std err          t      P&gt;|t|      [0.025      0.975]
+## ------------------------------------------------------------------------------------
+## Intercept            2.1695      0.922      2.352      0.028       0.251       4.088
+## C(Płeć)[T.M]         2.0989      1.023      2.051      0.053      -0.029       4.227
+## C(WIT)[T.obecny]    -0.1815      1.051     -0.173      0.865      -2.367       2.004
+## ==============================================================================
+## Omnibus:                        6.489   Durbin-Watson:                   2.075
+## Prob(Omnibus):                  0.039   Jarque-Bera (JB):                4.884
+## Skew:                           1.090   Prob(JB):                       0.0870
+## Kurtosis:                       3.367   Cond. No.                         3.60
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:           Kreatynina_7   R-squared:                       0.182
+## Model:                            OLS   Adj. R-squared:                  0.059
+## Method:                 Least Squares   F-statistic:                     1.483
+## Date:                Sun, 08 Sep 2019   Prob (F-statistic):              0.249
+## Time:                        22:06:49   Log-Likelihood:                -53.252
+## No. Observations:                  24   AIC:                             114.5
+## Df Residuals:                      20   BIC:                             119.2
+## Df Model:                           3                                         
+## Covariance Type:            nonrobust                                         
+## =================================================================================================
+##                                     coef    std err          t      P&gt;|t|      [0.025      0.975]
+## -------------------------------------------------------------------------------------------------
+## Intercept                         2.3600      1.090      2.165      0.043       0.086       4.634
+## C(Płeć)[T.M]                      1.8218      1.315      1.386      0.181      -0.921       4.564
+## C(WIT)[T.obecny]                 -0.6100      1.635     -0.373      0.713      -4.021       2.801
+## C(Płeć)[T.M]:C(WIT)[T.obecny]     0.7532      2.168      0.347      0.732      -3.769       5.275
+## ==============================================================================
+## Omnibus:                        7.155   Durbin-Watson:                   2.004
+## Prob(Omnibus):                  0.028   Jarque-Bera (JB):                5.425
+## Skew:                           1.139   Prob(JB):                       0.0664
+## Kurtosis:                       3.487   Cond. No.                         7.20
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:           Kreatynina_7   R-squared:                       0.182
+## Model:                            OLS   Adj. R-squared:                  0.059
+## Method:                 Least Squares   F-statistic:                     1.483
+## Date:                Sun, 08 Sep 2019   Prob (F-statistic):              0.249
+## Time:                        22:06:49   Log-Likelihood:                -53.252
+## No. Observations:                  24   AIC:                             114.5
+## Df Residuals:                      20   BIC:                             119.2
+## Df Model:                           3                                         
+## Covariance Type:            nonrobust                                         
+## ===============================================================================================
+##                                   coef    std err          t      P&gt;|t|      [0.025      0.975]
+## -----------------------------------------------------------------------------------------------
+## Intercept                       2.3600      1.090      2.165      0.043       0.086       4.634
+## C(WIT)[T.obecny]               -0.6100      1.635     -0.373      0.713      -4.021       2.801
+## C(Płeć)[T.M]:C(WIT)[brak]       1.8218      1.315      1.386      0.181      -0.921       4.564
+## C(Płeć)[T.M]:C(WIT)[obecny]     2.5750      1.724      1.494      0.151      -1.021       6.171
+## ==============================================================================
+## Omnibus:                        7.155   Durbin-Watson:                   2.004
+## Prob(Omnibus):                  0.028   Jarque-Bera (JB):                5.425
+## Skew:                           1.139   Prob(JB):                       0.0664
+## Kurtosis:                       3.487   Cond. No.                         5.26
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+<div id="rrr-zadanie-3.16" class="section level1 tabset">
+<h1>RRR Zadanie 3.16</h1>
+<p>W celu testowania równości średnich w dwóch grupach zaimplementuj następującą dwustopniową procedurę.W pierwszym kroku sprawdź, czy w grupach zmienne mają rozkład normalny. Jeżeli tak, to porównaj zmienne testem t-Studenta, jeżeli nie, to porównaj testem Wilcoxona. Zbadaj na kilku przykładach, czy ta procedura kontroluje błąd pierwszego rodzaju oraz jaką ma moc w porównaniu do testów t-Studenta i Wilcoxona.</p>
+<div id="r-code-15" class="section level2">
+<h2>R code</h2>
+<pre><code>bezpiecznyTest &lt;- function(x1, x2, alpha) {
+  require(nortest)
+  pwart = sf.test(c(scale(x1),scale(x2)))$p.value
+  if (pwart&lt;alpha) {
+   return(wilcox.test(x1,x2))
+  } 
+  t.test(x1,x2)
+}
+
+# blad pierwszego rodzaju
+
+N = 100000
+n = 10
+alfa = 0.1
+pwart = numeric(N)
+for (i in 1:N) {
+    pwart[i] = bezpiecznyTest(rchisq(n,2), rchisq(n,2), alfa)$p.value
+}
+mean(pwart&lt;alfa)
+
+# moc brak normalnosci
+
+N = 10000
+n = 10
+alfa = 0.1
+pwart1 = pwart2 = pwart3 = numeric(N)
+for (i in 1:N) {
+    x1 = rchisq(n,2)
+    x2 = rchisq(n,2)+1
+    pwart1[i] = bezpiecznyTest(x1,x2, alfa)$p.value
+    pwart2[i] = t.test(x1,x2)$p.value
+    pwart3[i] = wilcox.test(x1,x2)$p.value
+}
+mean(pwart1&lt;alfa)
+mean(pwart2&lt;alfa)
+mean(pwart3&lt;alfa)
+
+# moc, rozklady normalne
+
+N = 10000
+n = 20
+alfa = 0.1
+pwart1 = pwart2 = pwart3 = numeric(N)
+for (i in 1:N) {
+    x1 = rnorm(n,2)
+    x2 = rnorm(n,2)+0.7
+    pwart1[i] = bezpiecznyTest(x1,x2, alfa)$p.value
+    pwart2[i] = t.test(x1,x2)$p.value
+    pwart3[i] = wilcox.test(x1,x2)$p.value
+}
+mean(pwart1&lt;alfa)
+mean(pwart2&lt;alfa)
+mean(pwart3&lt;alfa)</code></pre>
+</div>
+<div id="python-code-15" class="section level2">
+<h2>Python code</h2>
+<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

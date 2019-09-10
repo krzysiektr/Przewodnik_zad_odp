@@ -1,0 +1,342 @@
+---
+title: "Zadania do części 'pazuRrry'"
+author: "[Krzysztof Trajkowski](https://github.com/krzysiektr/) kody w Python"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 3
+    #code_folding: hide
+    theme: "sandstone"
+    highlight: pygments
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+# R Zadanie 2.1 {.tabset}
+
+Odczytaj ramkę danych z zadania 1.13. Następnie zamień dane liczbowe
+z kolumny Wiek na zmienną czynnikową, dzieląc pacjentki na 3 grupy: o wieku do 45 lat, o wieku powyżej 55 lat i o wieku pośrednim. Poziomy tej zmiennej powinny nazywać się następująco: `"wiek <45"`, `"45<= wiek <=55"`,
+`"wiek >55"`. Następnie wyświetl macierz kontyngencji dla tej zmiennej i dla
+pary zmiennych wieku oraz dla płci. Dodaj do macierzy sumy brzegowe.
+Wyświetl płaską macierz kontyngencji dla trójki zmiennych czynnikowych,
+dwóch powyższych i jeszcze zmiennej `WIT`.
+
+## R code
+
+```{r}
+wiekPoziomy = cut(daneBT$Wiek, c(0,45.5, 55.5, 100), c("wiek <45", "45<= wiek <=55", "wiek >55"))
+table(wiekPoziomy)
+table(daneBT[,2], wiekPoziomy)
+addmargins(table(daneBT[,2], wiekPoziomy))
+ftable(daneBT[,2], daneBT[,3], wiekPoziomy)
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+
+daneBT = pd.read_csv("http://www.biecek.pl/R/dane/daneBioTech.csv",sep=';',decimal=',', header=0, encoding='iso8859_2')
+daneBT = daneBT.rename(columns=lambda x: x.replace(' ', '_'))
+
+wiekPoziomy = pd.cut(daneBT['Wiek_'],[0,45.5,55.5,100],labels=['wiek <45','45<= wiek <=55','wiek >55'],precision=0)
+print(pd.crosstab(index=wiekPoziomy, columns="count"))
+print(pd.crosstab(index=daneBT.iloc[:,1], columns=wiekPoziomy))
+print(pd.crosstab(index=daneBT.iloc[:,1], columns=wiekPoziomy,margins=True))
+print(pd.crosstab(index=[daneBT.iloc[:,1],daneBT.iloc[:,2]], columns=[wiekPoziomy]))
+```
+
+# RR Zadanie 2.2 {.tabset}
+
+Pod adresem [http://www.biecek.pl/R/dane/imieniny.txt](http://www.biecek.pl/R/dane/imieniny.txt) znajduje się
+plik tekstowy z imionami i datami imienin dla kolejnych imion. Plik jest
+w dosyć kłopotliwym formacie, mianowicie w każdym wierszu w pierwszej
+pozycji znajduje się imię, a po nim występują daty imienin. Wszystkie te
+pola rozdzielone są spacją. Ponieważ jednak różne imiona mają różne liczby
+imienin dane te nie są w postaci tabelarycznej. Odczytaj dane tak, by każdy
+wiersz był jednym elementem (można np. za separator wskazać ; nie występuje on w tym pliku, cała linia zostanie więc traktowana jako jeden element).
+Sprawdź ile imion znajduje się w tym pliku z danymi.
+
+> Pamiętaj przy tym, że domyślnie pola tekstowe konwertowane są na zmienne czynnikowe.
+
+## R code
+
+```{r}
+linie = unlist(read.table("http://www.biecek.pl/R/dane/imieniny.txt", sep="\n", stringsAsFactors=F,fileEncoding="ISO-8859-2"))
+length(linie)
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+
+line = pd.read_table('http://www.biecek.pl/R/dane/imieniny.txt',header=None,encoding='iso8859_2')
+print(line.shape[0])
+```
+
+# RRR Zadanie 2.3 {.tabset}
+
+Po odczytaniu danych z zadania 2.2 użyj `strsplit()` i `sapply()`, by z odczytanych danych wydobyć tylko informacje o imionach. Zlicz liczby znaków w
+kolejnych imionach i wyznacz macierz kontyngencji opisującą ile imion ma
+określoną długość. Sprawdź, które imię ma najwięcej znaków i które imiona mają najmniej znaków. Większość imion żeńskich kończy się literą 'a', wykorzystując tę informację zlicz liczbę żeńskich imion. Sprawdź ile liter rozpoczyna się literą A, ile B, ile C itp. Sprawdź, które imiona kończą się suffixem anna. Polskie litery występujące w imionach zamień na odpowiedniki łacińskie, np. ą na a, ź na z itp. Sprawdź, ile imion zawierało polskie litery.
+
+> Od tej reguły są wyjątki np. żeńskie imię Beatrycze i męskie Bonawentura.
+Dla uproszczenia zapomnijmy o wyjątkach.
+
+## R code
+
+```{r}
+linie = unlist(read.table("http://www.biecek.pl/R/dane/imieniny.txt", sep="\n", stringsAsFactors=F,fileEncoding="ISO-8859-2"))
+imiona = sapply(strsplit(linie, " "), function(x) x[[1]])
+dlugosciImion = nchar(imiona)
+table(dlugosciImion)
+imiona[dlugosciImion == min(dlugosciImion)]
+imiona[dlugosciImion == max(dlugosciImion)]
+      
+zenskieImiona = imiona[grep("a$",imiona)]
+length(zenskieImiona)
+
+pierwszaLitera = substr(imiona, 0,1)
+summary(factor(pierwszaLitera))
+
+imiona[grep("anna$",imiona)]
+
+imionaBezPolskich = chartr("ąęśćłńóźżĄĘŚĆŁŃÓŹŻ","aesclnozzAESCLNOZZ", imiona)
+sum(imionaBezPolskich != imiona)
+```
+  
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+
+linie = pd.read_table('http://www.biecek.pl/R/dane/imieniny.txt',header=None,encoding='iso8859_2')
+imiona = [ linie[0][i].split()[0] for i in range(linie.shape[0]) ]
+dlugosciImion = [ len(imiona[i]) for i in range(linie.shape[0]) ]
+df = pd.DataFrame({'imiona':imiona,'dlugosciImion' : dlugosciImion})
+print(pd.crosstab(index=df["dlugosciImion"], columns="count"))
+print(df[df.dlugosciImion == df.dlugosciImion.min(axis=0)])
+print(df[df.dlugosciImion == df.dlugosciImion.max(axis=0)])
+
+df['zenskieImiona'] = df['imiona'].str.extract('(a$)', expand=True)
+print(df.dropna(subset=['zenskieImiona']).shape[0])
+  
+pierwszaLitera = [ imiona[i][0] for i in range(linie.shape[0]) ]
+d = pd.DataFrame({'pierwszaLitera':pierwszaLitera})
+print(d['pierwszaLitera'].value_counts())
+
+df['anna'] = df['imiona'].str.extract('(anna$)', expand=True)
+print(df.dropna(subset=['anna'])['imiona'])
+  
+df['imio'] = [ df['imiona'][i].translate(str.maketrans("ąęśćłńóźżĄĘŚĆŁŃÓŹŻ", "aesclnozzAESCLNOZZ")) for i in range(linie.shape[0])]
+print(sum(df['imiona'] != df['imio']))
+```
+  
+# RR Zadanie 2.4 {.tabset}
+
+Po odczytaniu danych z powyższego zadania sprawdź, kto ma imieniny 30
+października. Wyświetl te imiona w porządku leksykograficznym. Sprawdź,
+które imię ma najczęściej imieniny. Sprawdź, w którym dniu roku najwięcej
+imion ma imieniny. Sprawdź, w którym dniu miesiąca a następnie, w którym
+miesiącu najwięcej imion ma imieniny.
+
+Na bazie wszystkich imion zrób analizę używalności poszczególnych liter.
+Która litera jest najpopularniejsza? Dlaczego?
+
+## R code
+
+```{r}
+urodzeni30X = imiona[c(grep(" 30.X$", linie), grep(" 30.X ", linie))]
+sort(urodzeni30X)
+liczbyImienin = sapply(strsplit(linie, " "), function(x) length(x)-1)
+linie[liczbyImienin==max(liczbyImienin)]
+
+datyImienin = sapply(strsplit(linie, " "), function(x) x[-1])
+liczebnosci = table(unlist(datyImienin))
+names(liczebnosci[liczebnosci == max(liczebnosci)])
+
+dniImienin      = unlist(sapply(strsplit(linie, "[ .]"), function(x) x[seq(2,length(x),2)]))
+miesiaceImienin = unlist(sapply(strsplit(linie, "[ .]"), function(x) x[seq(3,length(x),2)]))
+table(dniImienin)
+table(miesiaceImienin)
+plot(table(dniImienin))
+plot(table(miesiaceImienin))
+
+plot(table(tolower(unlist(sapply(strsplit(linie, "[ ]"), function(x) strsplit(x[1],""))))))
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+
+linie = pd.read_table('http://www.biecek.pl/R/dane/imieniny.txt',header=None,encoding='iso8859_2')
+linie['imiona'] = [ linie[0][i].split()[0] for i in range(linie.shape[0]) ]
+linie['w1'] = linie.iloc[:,0].str.extract('( 30.X$)', expand=True).dropna()
+linie['w2'] = linie.iloc[:,0].str.extract('( 30.X )', expand=True).dropna()
+urodzeni30X = linie.dropna(subset=['w1'])['imiona'].tolist() + linie.dropna(subset=['w2'])['imiona'].tolist()
+print(sorted(urodzeni30X))
+
+w = linie.iloc[:,0]
+linie['urodziny'] = [ w[i].split(' ')[1:] for i in range(linie.shape[0]) ]
+linie['liczbyImienin'] = [ len(linie['urodziny'][i]) for i in range(linie.shape[0]) ]
+print(linie[linie.liczbyImienin == linie.liczbyImienin.max(axis=0)])
+
+d = pd.DataFrame()
+d['urodz'] = [y for x in linie['urodziny'].tolist() for y in x]
+print(d['urodz'].value_counts(sort=False))
+
+d = d.join(d['urodz'].str.split('.', 1,expand=True).rename(columns={0:'dniImienin',1:'miesiaceImienin'}))
+print(d['dniImienin'].value_counts(sort=False))
+print(d['miesiaceImienin'].value_counts(sort=False))
+
+import matplotlib.pyplot as plt
+
+fig = plt.figure(figsize=(14,6))
+ax1 = fig.add_subplot(1,2,1)
+ax2 = fig.add_subplot(1,2,2)
+ax1.vlines(d['dniImienin'].value_counts(sort=False).index.values, [0], d['dniImienin'].value_counts(sort=False),lw=2,color='C0')
+ax2.vlines(d['miesiaceImienin'].value_counts(sort=False).index.values, [0], d['miesiaceImienin'].value_counts(sort=False),lw=2,color='C0')
+plt.tight_layout()
+plt.savefig('R02_1.png')
+
+u = [linie['imiona'][i] for i in range(linie.shape[0]) ]
+litery = ','.join(u).replace(',', '').lower()
+D = pd.DataFrame({'litery':list(litery)})
+Y = D['litery'].value_counts(sort=False)
+X = D['litery'].value_counts(sort=False).index.values
+
+fig = plt.figure(figsize=(14,6))
+ax = fig.add_subplot(1,1,1)
+ax.vlines(X, [0], Y, lw=2, color='C0')
+plt.tight_layout()
+plt.savefig('R02_2.png')
+```
+```{r R02_1, echo=FALSE, fig.pos= 'h', fig.show='hold', fig.align='center', fig.cap="Wykresy.", out.width = '100%'}
+knitr::include_graphics("R02_1.png")
+```
+```{r R02_2, echo=FALSE, fig.pos= 'h', fig.show='hold', fig.align='center', fig.cap="Wykresy.", out.width = '100%'}
+knitr::include_graphics("R02_2.png")
+```
+
+# R Zadanie 2.5 {.tabset}
+
+Odczytaj ramkę danych z zadania 1.13. Następnie używając funkcji `by()` wyświetl podsumowanie zmiennej Wiek osobno dla grupy `WIT=brak` i dla grupy `WIT=obecny`.
+
+## R code
+
+```{r}
+with(daneBT,by(Wiek,WIT,summary))
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+
+daneBT = pd.read_csv("http://www.biecek.pl/R/dane/daneBioTech.csv",sep=';',decimal=',', header=0, encoding='iso8859_2')
+daneBT = daneBT.rename(columns=lambda x: x.replace(' ', '_'))
+
+print(daneBT.groupby(['WIT'])['Wiek_'].describe())
+```
+
+# R Zadanie 2.6 {.tabset}
+
+Wyznacz wyznacznik, wartości własne oraz wektory własne macierzy:
+$$\begin{bmatrix}
+1 & 5 & 3\\
+2 & 0 & 5\\
+1 & 2 & 1
+\end{bmatrix}.$$
+
+## R code
+
+```{r}
+mat = matrix(c(1, 5, 3, 2, 0, 5, 1, 2, 1),3,3)
+det(mat)
+eigen(mat)
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import numpy as np
+
+mat = np.array(np.mat('1,2,1; 5,0,2; 3,5,1'))
+print(np.linalg.det(mat))
+_, eigenvectors = np.linalg.eig(mat)
+print(eigenvectors)
+```
+
+# RR Zadanie 2.7 {.tabset}
+
+Używając funkcji `outer()` zbuduj i wyświetl na ekranie tabliczkę mnożenia
+liczb od 1 do 10.
+
+## R code
+
+```{r}
+outer(1:5,1:5,function(x,y) paste(x,"*",y,"=",x*y,sep=""))
+```
+    
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import numpy as np
+
+print(np.arange(1,6,1)[:,None] * np.arange(1,6,1))
+```
+
+# R Zadanie 2.8 {.tabset}
+
+Odczytaj ramkę danych z zadania 1.13. Następnie wyznacz histogram dla
+zmiennej `Wiek` i zapisz go do pliku `hist.pdf` w wymiarach $5\times5$ cali.
+
+## R code
+
+```{r}
+pdf("hist.pdf", 5, 5)
+hist(daneBT[,'Wiek'])
+dev.off()
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+import pandas as pd
+import matplotlib.pyplot as plt
+
+daneBT = pd.read_csv("http://www.biecek.pl/R/dane/daneBioTech.csv",sep=';',decimal=',', header=0, encoding='iso8859_2')
+daneBT = daneBT.rename(columns=lambda x: x.replace(' ', '_'))
+
+daneBT['Wiek_'].hist()
+plt.tight_layout()
+plt.savefig('hist.pdf')
+```
+
+# RRR Zadanie 2.9 {.tabset}
+
+Pod adresem [http://money.pl/](http://money.pl/) można odczytać aktualne wartości indeksów giełdowych. Wczytaj zawartość tej strony do programu R, a następnie
+wyciągnij z niej dane o nazwie i wartościach indeksów.
+Zauważ, że w treści HTML tabela z nazwami i wartościami indeksów rozpoczyna się od linii `<table id="tgpw" class="tabela">`.
+  
+## R code
+
+```{r}
+  
+```
+
+## Python code
+
+```{r engine='python',engine.path='python3',python.reticulate=FALSE}
+print("TODO")
+```
+
+
